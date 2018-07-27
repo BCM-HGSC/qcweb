@@ -1,14 +1,15 @@
+import io
+import base64
+import urllib
+
 from flask import Flask
 from flask import render_template
 from flask import url_for
 from flask import request
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-import io
-import base64
 import pandas as pd
 import seaborn as sns
-import urllib
 
 
 # flask knows where to look for static & template files
