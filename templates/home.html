@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+  {% for test in  tests %}
+      <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <a class="mr-2" href="#">{{ test.author }}</a>
+            <small class="text-muted">{{ test.date}}</small>
+          </div>
+          <h2><a class="article-title" href="#">{{ test.title }}</a></h2>
+          <p class="article-content">{{ test.content }}</p>
+        </div>
+      </article>
+  {% endfor %}
+{% endblock content %}
+{% block sidebar %}
+  <div class="col-md-4">
+    <div class="content-section">
+      <h3>Our Sidebar</h3>
+      <p class='text-muted'>You can put any information here you'd like.
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-light">Overview</li>
+          <li class="list-group-item list-group-item-light">QC_Report Support</li>
+          <li class="list-group-item list-group-item-light">Resources</li>
+          <li class="list-group-item list-group-item-light">Contact Us</li>
+        </ul>
+      </p>
+    </div>
+  </div>
+{% endblock sidebar %}

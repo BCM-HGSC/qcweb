@@ -1,0 +1,5 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Table Page</h1>
+    {{ data.to_html() | safe }}
+{% endblock content %}
