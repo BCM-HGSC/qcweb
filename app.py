@@ -47,7 +47,6 @@ def table():
 
 @app.route('/plot')
 def plot():
-    # global plot_url
     img = io.BytesIO()
 
     at = pd.read_pickle('../2018_at.pickle.gzip')
@@ -67,10 +66,8 @@ def plot():
 
     # base64 encode & URL-escape
     plot_url = urllib.parse.quote(base64.b64encode(img.read()).decode())
-    # plot_url = base64.b64encode(img.getvalue())
 
     return render_template('plot.html', title='Plot', plot_url=plot_url) 
-    # return '<img src="data:image/png;base64,{}">'.format(plot_url)
 
 
 if __name__ == '__main__':
