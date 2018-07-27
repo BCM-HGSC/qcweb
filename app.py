@@ -61,7 +61,6 @@ def plot():
     # avoid xticklabels cut off
     p1.figure.tight_layout()
     p1.figure.savefig(img, format='png')
-    p1.figure.savefig('p1.png')
     img.seek(0)
 
     # base64 encode & URL-escape
