@@ -1,14 +1,16 @@
+import io
+import base64
+import urllib
+
 from flask import Flask
 from flask import render_template
 from flask import url_for
 from flask import request
+from flask import make_response
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-import io
-import base64
 import pandas as pd
 import seaborn as sns
-import urllib
 
 
 # flask knows where to look for static & template files
@@ -46,7 +48,11 @@ def table():
 
 @app.route('/plot')
 def plot():
-    # global plot_url
+    return render_template('plot.html', title='Plot')
+
+
+@app.route('/plots/p1.png')
+def p1_png():
     img = io.BytesIO()
 
     at = pd.read_pickle('../2018_at.pickle.gzip')
@@ -61,15 +67,12 @@ def plot():
     # avoid xticklabels cut off
     p1.figure.tight_layout()
     p1.figure.savefig(img, format='png')
-    p1.figure.savefig('p1.png')
-    img.seek(0)
 
-    # base64 encode & URL-escape
-    plot_url = urllib.parse.quote(base64.b64encode(img.read()).decode())
-    # plot_url = base64.b64encode(img.getvalue())
-
-    return render_template('plot.html', title='Plot', plot_url=plot_url) 
-    # return '<img src="data:image/png;base64,{}">'.format(plot_url)
+    # Results
+    png_data = img.getvalue()
+    resp = make_response(png_data)
+    resp.content_type = "image/png"
+    return resp
 
 
 if __name__ == '__main__':
