@@ -28,6 +28,7 @@ dummy = [
 
 
 def initialize():
+    global at
     global at_head
     at = pd.read_pickle('../2018_at.pickle.gzip')
     at_head = at.head()
@@ -55,8 +56,8 @@ def plot():
 def p1_png():
     img = io.BytesIO()
 
-    at = pd.read_pickle('../2018_at.pickle.gzip')
-    at_sub = at.tail(1000)
+    # select number of rows from dataframe
+    at_sub = at.iloc[-1000:, :]
     sns.set_style('whitegrid')
     mpl.rcParams['patch.force_edgecolor'] = True
 
