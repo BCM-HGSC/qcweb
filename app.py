@@ -58,18 +58,23 @@ def p1_png():
 
     # select number of rows from dataframe
     at_sub = at.iloc[-1000:, :]
+
+    # matplot/ seaborn style setting
     sns.set_style('whitegrid')
     mpl.rcParams['patch.force_edgecolor'] = True
-
     sns.set(rc={'figure.figsize':(5.0, 5.0)})
+
+    # seaborn countplot
     p1 = sns.countplot(x='Group', data=at_sub, palette='coolwarm')
+
+    # rotate xticklabels to prevent the labels being overlapped
     p1.set_xticklabels(p1.get_xticklabels(), rotation=90);
 
-    # avoid xticklabels cut off
+    # adjust subplot params to avoid axis labels,titles or ticklabels being clipped
     p1.figure.tight_layout()
     p1.figure.savefig(img, format='png')
 
-    # Results
+    # results
     png_data = img.getvalue()
     resp = make_response(png_data)
     resp.content_type = "image/png"
