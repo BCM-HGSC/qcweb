@@ -66,7 +66,7 @@ def p2_png():
     # matplot/ seaborn style setting
     sns.set_style('whitegrid')
     mpl.rcParams['patch.force_edgecolor'] = True
-    sns.set(rc={'figure.figsize':(5.0, 5.0)})
+    sns.set(rc={'figure.figsize':(10.6, 10.6)})
 
     # QC group care about 'Run Finished Date'
     cols_keep = ['Lane Barcode',
