@@ -108,7 +108,7 @@ def p2_png():
     resp.content_type = "image/png"
     return resp
 
-
+    # TODO later
     # groupby by Group
     df_grp = df_ats.groupby('Group')
     grp = df_grp['Group']
@@ -128,7 +128,7 @@ def p2_png():
     p3 = make_pie(title,labels, sizes, 160, 20, 17)
 
 
-# functions used for create pie chart
+# functions used to create pie chart
 def make_pie(title, labels, sizes, angle, num_rows, explode_index):
 
     # explode index of the pie slice
@@ -149,7 +149,7 @@ def make_pie(title, labels, sizes, angle, num_rows, explode_index):
     params = {'figure.figsize': (12.6, 12.6)}
     pylab.rcParams.update(params)
 
-    # set title
+    # fig title parameters
     fig1.suptitle(title, fontsize=20)
 
     # add legend
@@ -166,6 +166,7 @@ def make_pie(title, labels, sizes, angle, num_rows, explode_index):
 
     # TODO:
     # correct overlap labels
+
 
 def make_explode(num_rows, explode_index):
     base = make_base(num_rows)
