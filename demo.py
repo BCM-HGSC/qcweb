@@ -96,11 +96,11 @@ def p2_png():
     sizes = appl_sizes
 
     # appl_pie
-    p2 = make_pie(title, labels, sizes, 120, 9, 7)
+    make_pie(title, labels, sizes, 120, 9, 7)
 
-    # TODO savefig
-    p2.figure.tight_layout()
-    p2.figure.savefig(img, format='png')
+    # savefig
+    # p2.figure.tight_layout()
+    plt.savefig(img, format='png')
 
     # results
     png_data = img.getvalue()
