@@ -37,7 +37,7 @@ dummy = [
 def initialize():
     global df_at
     global df_at_head
-    df_at = pd.read_pickle('../data/at.pickle.gzip')
+    df_at = pd.read_pickle('data/at.pickle.gzip')
     df_at_head = df_at.head()
 
 
