@@ -1,185 +1,171 @@
+# First come standard libraries, in alphabetical order.
+import io
+import base64
+import urllib
 
-# coding: utf-8
-
-# ### ipynb Setting
-
-# In[1]:
-
-
-# jupyter notebook --NotebookApp.iopub_data_rate_limit=10000000000
-
-
-# #### Imports
-
-# In[2]:
-
-
-import pandas as pd
-import numpy as np
-
-
-# In[3]:
-
-
-import matplotlib.pyplot as plt
-import seaborn as sns
-get_ipython().magic('matplotlib inline')
-
-import matplotlib.pylab as pylab
+# After a blank line, import third-party libraries.
+from flask import Flask
+from flask import render_template
+from flask import url_for
+from flask import request
+from flask import make_response
 from matplotlib import cm # color
-
-
-# #### Style Setting
-
-# In[4]:
-
-
-sns.set_style('whitegrid')
-
+import matplotlib.pylab as pylab
+import matplotlib.pyplot as plt
 import matplotlib as mpl
-mpl.rcParams['patch.force_edgecolor'] = True
+import numpy as np
+import pandas as pd
+import seaborn as sns
 
-from matplotlib import rcParams
-rcParams['figure.figsize'] = 13.6, 13.6 # figure size in inches
+# After another blank line, import local libraries.
 
 
-# ### Load at pickle file
-QC all_time has some blank columns, but
-basically QC group added 2 columns to Illunina Breakdown Report to XLSX
-total_cols (170)
-* Prefix
-* Group
+# flask knows where to look for static & template files
+app = Flask(__name__)
 
-I have corrected one value (Total MB from 'wrong DNA' to 0) and added 2 more columns
-total_cols (174)
-* Application
-* Numeric Total MB
-# In[5]:
 
+dummy = [
+    {
+        'author': 'Jennifer Watt',
+        'title': 'All Time',
+        'content': 'QC demo for All Time Data',
+        'date': 'August 6, 2018'
+    }
+]
 
-df_at = pd.read_pickle('../data/at.pickle.gzip')
 
+def initialize():
+    global df_at
+    global df_at_head
+    df_at = pd.read_pickle('../data/at.pickle.gzip')
+    df_at_head = df_at.head()
 
-# In[6]:
 
+@app.route("/")
+@app.route("/home")
+def home():
+    # by passing in variable tests (1st one), you get the tests in home.html
+    # argument tests (2nd one) is equal to the dummy data
+    return render_template('home.html', tests=dummy)
 
-df_at.shape
 
+@app.route("/table")
+def table():
+    return render_template('table.html', title='Table', data=df_at_head)
 
-# In[7]:
 
+@app.route('/plot')
+def plot():
+    return render_template('plot.html', title='Plot')
 
-df_at.info()
 
+@app.route('/plots/p2.png')
+def p2_png():
+    img = io.BytesIO()
 
-# In[8]:
+    # matplot/ seaborn style setting
+    sns.set_style('whitegrid')
+    mpl.rcParams['patch.force_edgecolor'] = True
+    sns.set(rc={'figure.figsize':(5.0, 5.0)})
 
+    # QC group care about 'Run Finished Date'
+    cols_keep = ['Lane Barcode',
+                 'Midpool Library',
+                 'Library',
+                 'Run Finished Date',
+                 'Total MB',
+                 'Prefix',
+                 'Group',
+                 'Application',
+                 'Numeric Total MB']
 
-# column names
-df_at.columns
+    df_ats = df_at[cols_keep]
 
+    # groupby by Application
+    df_appl = df_ats.groupby('Application')
+    df_appl2 = (df_ats.groupby('Application')['Numeric Total MB'].sum()).reset_index()
+    df_appl2['Total TB'] = (df_appl2['Numeric Total MB'] / 1000000)
 
-# In[9]:
+    # Parameters for Application
+    appl = df_appl2['Application']
+    appl_sizes = df_appl2['Total TB']
 
+    # chart by Application
+    title = 'HGSC Illumina Distribution of Applications (2007-Present)'
+    labels = appl
+    sizes = appl_sizes
 
-# row number
-df_at.index
+    # appl_pie
+    p2 = make_pie(title, labels, sizes, 120, 9, 7)
 
+    # TODO savefig
+    p2.figure.tight_layout()
+    p2.figure.savefig(img, format='png')
 
-# #### Create df_ats from df_at
+    # results
+    png_data = img.getvalue()
+    resp = make_response(png_data)
+    resp.content_type = "image/png"
+    return resp
 
-# In[10]:
 
+    # groupby by Group
+    df_grp = df_ats.groupby('Group')
+    grp = df_grp['Group']
+    df_grp2 = (df_ats.groupby('Group')['Numeric Total MB'].sum()).reset_index()
+    df_grp2['Total TB'] = (df_grp2['Numeric Total MB'] / 1000000)
 
-# QC group care about 'Run Finished Date'
+    # parameters for Group
+    grp = df_grp2['Group']
+    grp_sizes = df_grp2['Total TB']
 
-cols_keep = ['Lane Barcode',
-             'Metaproject',
-             'Midpool Library',
-             'Library',
-             'Run Finished Date',
-             'Total MB',
-             'Prefix',
-             'Group',
-             'Application',
-             'Numeric Total MB']
+    # chart by Group
+    title = 'HGSC Illumina Distribution of Projects (2007-Present)'
+    labels = grp
+    sizes = grp_sizes
 
-df_ats = df_at[cols_keep]
+    # grp_pie
+    p3 = make_pie(title,labels, sizes, 160, 20, 17)
 
 
-# In[11]:
+# functions used for create pie chart
+def make_pie(title, labels, sizes, angle, num_rows, explode_index):
 
+    # explode index of the pie slice
+    explode = make_explode(num_rows, explode_index)
 
-df_ats.shape
+    fig1, ax1 = plt.subplots()
 
+    # turn off explode: explode=None
+    ax1.pie(sizes,
+            labels=labels,
+            explode=explode,
+            labeldistance=1.2,
+            autopct='%1.1f%%',
+            shadow=True,
+            startangle=angle)
 
-# In[12]:
+    # figure size
+    params = {'figure.figsize': (12.6, 12.6)}
+    pylab.rcParams.update(params)
 
+    # set title
+    fig1.suptitle(title, fontsize=20)
 
-df_ats.head(3)
+    # add legend
+    plt.legend(labels, loc="upper right")
 
+    # set color
+    cs=cm.Set1(np.arange(40)/40.)
 
-# ####   groupby Application
+    # equal aspect ratio ensures that pie is drawn as a circle
+    ax1.axis('equal');
 
-# In[13]:
+    # TODO:
+    # vertical callout label
 
-
-df_appl = df_ats.groupby('Application')
-
-
-# In[14]:
-
-
-len(df_appl)
-
-
-# In[15]:
-
-
-# to view groupby object
-df_appl.count()
-
-
-# In[16]:
-
-
-len(df_appl)
-
-
-# In[17]:
-
-
-df_appl2 = (df_ats.groupby('Application')['Numeric Total MB'].sum()).reset_index()
-
-
-# In[18]:
-
-
-df_appl2
-
-
-# In[19]:
-
-
-df_appl2['Total TB'] = (df_appl2['Numeric Total MB'] / 1000000)
-
-
-# In[20]:
-
-
-df_appl2
-
-
-# In[21]:
-
-
-appl = df_appl2['Application']
-appl_sizes = df_appl2['Total TB']
-print(len(appl), len(appl_sizes))
-
-
-# In[22]:
-
+    # TODO:
+    # correct overlap labels
 
 def make_explode(num_rows, explode_index):
     base = make_base(num_rows)
@@ -191,193 +177,6 @@ def make_base(length):
     return [0,]*length
 
 
-# In[23]:
-
-
-from matplotlib import cm
-
-
-# In[24]:
-
-
-#5
-
-def make_pie(title, labels, sizes, angle, num_rows, explode_index):
-
-    # explode index of the pie slice
-    explode = make_explode(num_rows, explode_index)
-    
-    fig1, ax1 = plt.subplots()
-    
-    # turn off explode: explode=None
-    ax1.pie(sizes,
-            labels=labels,
-            explode=explode,
-            labeldistance=1.2,
-            autopct='%1.1f%%',
-            shadow=True, 
-            startangle=angle)
-    
-    # figure size
-    params = {'figure.figsize': (12.6, 12.6)}
-    pylab.rcParams.update(params)
-      
-    # set title
-    fig1.suptitle(title, fontsize=20)
-    
-    # add legend
-    plt.legend(labels, loc="upper right")
-    
-    # set color
-    cs=cm.Set1(np.arange(40)/40.)
-    
-    # equal aspect ratio ensures that pie is drawn as a circle
-    ax1.axis('equal');
-    
-    # TODO:
-    # vertical callout label
-    
-    # TODO: 
-    # correct overlap labels
-
-
-# #### Chart by Application
-
-# In[41]:
-
-
-import matplotlib.pyplot as plt
-# p2, ax = plt.subplots();
-
-
-# In[65]:
-
-
-title = 'HGSC Illumina Distribution of Applications (2007-Present)'
-labels = appl
-sizes = appl_sizes
-
-# appl_pie
-make_pie(title, labels, sizes, 120, 9, 7)
-
-
-# In[71]:
-
-
-plt.savefig('p3.png')
-
-
-# In[72]:
-
-
-ll p3.png
-
-
-# In[74]:
-
-
-get_ipython().system("open -a 'Google Chrome' p3.png")
-
-
-# In[58]:
-
-
-# TODO: save fig
-
-# fig = plt.figure()
-# fig.savefig('p2.png')
-
-fig = plt.gcf()
-plt.draw()
-fig.savefig('p2.png')
-plt.show()
-
-
-# In[59]:
-
-
-get_ipython().system('open p2.png')
-
-
-# #### groupby Group
-
-# In[ ]:
-
-
-df_ats.columns
-
-
-# In[ ]:
-
-
-df_grp = df_ats.groupby('Group')
-
-
-# In[ ]:
-
-
-len(df_grp)
-
-
-# In[ ]:
-
-
-df_grp.count()
-
-
-# In[ ]:
-
-
-grp = df_grp['Group']
-len(grp)
-
-
-# In[ ]:
-
-
-df_grp2 = (df_ats.groupby('Group')['Numeric Total MB'].sum()).reset_index()
-
-
-# In[ ]:
-
-
-df_grp2
-
-
-# In[ ]:
-
-
-df_grp2['Total TB'] = (df_grp2['Numeric Total MB'] / 1000000)
-
-
-# In[ ]:
-
-
-df_grp2
-
-
-# In[ ]:
-
-
-grp = df_grp2['Group']
-grp_sizes = df_grp2['Total TB']
-
-
-# #### Chart by Group
-
-# In[ ]:
-
-
-title = 'HGSC Illumina Distribution of Projects (2007-Present)'
-labels = grp
-sizes = grp_sizes
-
-# grp_pie
-p3 = make_pie(title,labels, sizes, 160, 20, 17)
-
-
-# In[ ]:
-
-
-p3.figure.savefig("p3.png")
-
+if __name__ == '__main__':
+    initialize()
+    app.run(debug=True)
