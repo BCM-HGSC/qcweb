@@ -1,7 +1,9 @@
+# First come standard libraries, in alphabetical order.
 import io
 import base64
 import urllib
 
+# After a blank line, import third-party libraries.
 from flask import Flask
 from flask import render_template
 from flask import url_for
@@ -11,6 +13,8 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 import pandas as pd
 import seaborn as sns
+
+# After another blank line, import local libraries.
 
 
 # flask knows where to look for static & template files
