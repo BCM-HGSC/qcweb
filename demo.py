@@ -59,8 +59,8 @@ def plot():
     return render_template('plot.html', title='Plot')
 
 
-@app.route('/plots/p2.png')
-def p2_png():
+@app.route('/plots/p1.png')
+def p1_png():
     img = io.BytesIO()
 
     # matplot/ seaborn style setting
@@ -99,7 +99,7 @@ def p2_png():
     make_pie(title, labels, sizes, 120, 9, 7)
 
     # savefig
-    # p2.figure.tight_layout()
+    # p1.figure.tight_layout()
     plt.savefig(img, format='png')
 
     # results
