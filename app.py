@@ -47,7 +47,12 @@ def table():
     return render_template('table.html', title='Table', data=at_head)
 
 
-@app.route('/plot')
+@app.route("/query")
+def query():
+    return render_template('query.html', title='Query')
+
+
+@app.route("/plot")
 def plot():
     return render_template('plot.html', title='Plot')
 
