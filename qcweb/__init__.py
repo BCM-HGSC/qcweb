@@ -15,21 +15,10 @@ import pandas as pd
 import seaborn as sns
 
 # After another blank line, import local libraries.
-
+from data import my_data
 
 # flask knows where to look for static & template files
 app = Flask(__name__)
-
-
-class MyData:
-    def __init__(self):
-        super(MyData, self).__init__()
-        self.at = pd.read_pickle('data/2018_at.pickle.gzip')
-        self.at_head = self.at.head()
-        print('*** loaded the data')
-
-
-my_data = MyData()
 
 
 @app.route("/")
