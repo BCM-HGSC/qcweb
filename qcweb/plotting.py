@@ -29,6 +29,8 @@ def plot_demo(data_frame):
     p1.figure.savefig(img, format='png')
 
     # results
+    plt.close()
     image_data = img.getvalue()
+    img.close()
     image_type = "image/png"
     return image_data, image_type
