@@ -15,7 +15,7 @@ import pandas as pd
 import seaborn as sns
 
 # After another blank line, import local libraries.
-from data import my_data
+from .data import my_data
 
 # flask knows where to look for static & template files
 app = Flask(__name__)
@@ -71,8 +71,3 @@ def p1_png():
     resp = make_response(png_data)
     resp.content_type = "image/png"
     return resp
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
