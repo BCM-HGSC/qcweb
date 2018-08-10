@@ -21,11 +21,15 @@ import seaborn as sns
 app = Flask(__name__)
 
 
-def initialize():
-    global at
-    global at_head
-    at = pd.read_pickle('data/2018_at.pickle.gzip')
-    at_head = at.head()
+class MyData:
+    def __init__(self):
+        super(MyData, self).__init__()
+        self.at = pd.read_pickle('data/2018_at.pickle.gzip')
+        self.at_head = self.at.head()
+        print('*** loaded the data')
+
+
+my_data = MyData()
 
 
 @app.route("/")
@@ -36,6 +40,7 @@ def home():
 
 @app.route("/table")
 def table():
+    at_head = my_data.at_head
     return render_template('table.html', title='Table', data=at_head)
 
 
@@ -54,6 +59,7 @@ def p1_png():
     img = io.BytesIO()
 
     # select number of rows from dataframe
+    at = my_data.at
     at_sub = at.iloc[-1000:, :]
 
     # matplot/ seaborn style setting
@@ -79,6 +85,5 @@ def p1_png():
 
 
 if __name__ == '__main__':
-    initialize()
     app.run(debug=True)
 
