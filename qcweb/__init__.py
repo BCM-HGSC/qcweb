@@ -8,10 +8,12 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
-from flask_wrf import FlaskForm
-from wrforms import (BooleanField, DateField, DateTimeField,
+from flask_wtf import FlaskForm
+from wtforms import (BooleanField, DateField, DateTimeField,
                      RadioField, SelectField, StringField,
                      SubmitField, TextAreaField, TextField)
+
+from wtforms.validators import DataRequired
 
 # After another blank line, import local libraries.
 from .selection import head, sub_demo
@@ -33,7 +35,7 @@ def table():
     return render_template('table.html', title='Table', data=head())
 
 
-@app.route("/query", methbds=['GET', 'POST'])
+@app.route("/query", methods=['GET', 'POST'])
 def query():
     # create instance of the form
     form = QueryForm()
