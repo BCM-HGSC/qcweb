@@ -2,14 +2,21 @@
 
 # After a blank line, import third-party libraries.
 from flask import Flask
-from flask import render_template
-from flask import url_for
-from flask import request
 from flask import make_response
+from flask import redirect
+from flask import render_template
+from flask import request
+from flask import session
+from flask import url_for
+from flask_wrf import FlaskForm
+from wrforms import (BooleanField, DateField, DateTimeField,
+                     RadioField, SelectField, StringField,
+                     SubmitField, TextAreaField, TextField)
 
 # After another blank line, import local libraries.
 from .selection import head, sub_demo
 from .plotting import plot_demo
+from .form_fields import QueryForm
 
 # flask knows where to look for static & template files
 app = Flask(__name__)
