@@ -22,6 +22,7 @@ from .form_fields import QueryForm
 
 # flask knows where to look for static & template files
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'mysecretkey'
 
 
 @app.route("/")
