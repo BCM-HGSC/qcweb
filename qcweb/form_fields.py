@@ -7,6 +7,7 @@ from wtforms import (StringField, BooleanField,
 from wtforms.validators import DataRequired
 
 
+app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecretkey'
 
 
