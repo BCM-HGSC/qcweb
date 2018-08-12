@@ -24,16 +24,6 @@ import seaborn as sns
 app = Flask(__name__)
 
 
-dummy = [
-    {
-        'author': 'Jennifer Watt',
-        'title': 'All Time',
-        'content': 'QC demo for All Time Data',
-        'date': 'August 6, 2018'
-    }
-]
-
-
 def initialize():
     global df_at
     global df_at_head
@@ -46,7 +36,7 @@ def initialize():
 def home():
     # by passing in variable tests (1st one), you get the tests in home.html
     # argument tests (2nd one) is equal to the dummy data
-    return render_template('home.html', tests=dummy)
+    return render_template('home.html', title='Home')
 
 
 @app.route("/table")

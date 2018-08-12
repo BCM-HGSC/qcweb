@@ -1,17 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
-  {% for test in  tests %}
       <article class="media content-section">
         <div class="media-body">
-          <div class="article-metadata">
-            <a class="mr-2" href="#">{{ test.author }}</a>
-            <small class="text-muted">{{ test.date}}</small>
-          </div>
-          <h2><a class="article-title" href="#">{{ test.title }}</a></h2>
-          <p class="article-content">{{ test.content }}</p>
+          <h3>Welcome to QC Report</h3>
+          <p>Powered by Python and Flask...</p>
+          <br>
+        <img src="http://flask.pocoo.org/static/logo/flask.svg" alt="">
         </div>
       </article>
-  {% endfor %}
 {% endblock content %}
 {% block sidebar %}
     <div class="col-md-12">
