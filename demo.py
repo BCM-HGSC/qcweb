@@ -91,9 +91,11 @@ def p1_png():
     # savefig
     # p1.figure.tight_layout()
     plt.savefig(img, format='png')
+    plt.close()
 
     # results
     png_data = img.getvalue()
+    img.close()
     resp = make_response(png_data)
     resp.content_type = "image/png"
     return resp
