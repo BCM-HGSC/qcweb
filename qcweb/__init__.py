@@ -33,9 +33,23 @@ def table():
     return render_template('table.html', title='Table', data=head())
 
 
-@app.route("/query")
+@app.route("/query", methbds=['GET', 'POST'])
 def query():
-    return render_template('query.html', title='Query')
+    # create instance of the form
+    form = QueryForm()
+    # if the form is valid on submission
+    if form.validate_on_submit():
+        # grab the data from the query on the form
+        session['qcreport'] = form.qcreport.data
+        session['platform'] = form.platform.data
+        session['group'] = form.group.data
+        session['appl'] = form.appl.data
+        session['start'] = form.start.data
+        session['end'] = form.end.data
+        session['agg'] = form.agg.data
+        session['plot_choice'] = form.plot_choice.data
+        session['display_table'] = form.display_table.data
+    return render_template('query.html', title='Query', form=form)
 
 
 @app.route("/plot")
@@ -43,7 +57,7 @@ def plot():
     return render_template('plot.html', title='Plot')
 
 
-@app.route('/plots/p1.png')
+@app.route("/plots/p1.png")
 def p1_png():
     at_sub = sub_demo()
     image_data, image_type = plot_demo(at_sub)

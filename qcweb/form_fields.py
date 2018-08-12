@@ -75,28 +75,3 @@ class QueryForm(FlaskForm):
     display_table = RadioField('Display Table:', choices=[('yes','Yes'), ('no','No')])
 
     submit = SubmitField('Submit')
-
-
-@app.route('/')
-@app.route('/form', methbds=['GET', 'POST'])
-def query_form():
-    # create instance of the form
-    form = QueryForm()
-    # if the form is valid on submission
-    if form.validate_on_submit():
-        # grab the data from the query on the form
-        session['qcreport'] = form.qcreport.data
-        session['platform'] = form.platform.data
-        session['group'] = form.group.data
-        session['appl'] = form.appl.data
-        session['start'] = form.start.data
-        session['end'] = form.end.data
-        session['agg'] = form.agg.data
-        session['plot_choice'] = form.plot_choice.data
-        session['display_table'] = form.display_table.data
-
-    return render_template('form.html', form=form)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
