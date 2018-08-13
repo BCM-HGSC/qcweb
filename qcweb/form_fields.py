@@ -35,7 +35,7 @@ class QueryForm(FlaskForm):
                              ('Gabriella', 'Gabriella'),
                              ('H3 Africa', 'H3 Africa'),
                              ('Insects', 'Insects'),
-                             ('Mendelian', 'Medelian'),
+                             ('Mendelian', 'Mendelian'),
                              ('Metagenomic', 'Metagenomic'),
                              ('Other', 'Other'),
                              ('Research & Development', 'Research & Development'),
