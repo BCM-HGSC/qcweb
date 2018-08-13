@@ -57,9 +57,9 @@ class QueryForm(FlaskForm):
                              ('Whole Genome', 'Whole Gemone'),
                              ('small RNA', 'small RNA')])
 
-    # QC group care about 'Run Finished Date'
-    start = DateField(format='%Y-%m-%d')
-    end = DateField(format='%Y-%m-%d')
+    # QC group care about Run Finished Date
+    start = DateField(u'Start: ', format='%Y-%m-%d')
+    end = DateField(u'End: ', format='%Y-%m-%d')
 
     # for pandas groupby filter
     agg = SelectField(u'Aggregation: ',

@@ -13,18 +13,16 @@
           <br>
           {{ form.appl.label }}{{ form.appl }}
           <br>
-          QC group care about 'Run Finished Date'
+          <!-- QC group care about 'Run Finished Date' -->
+          {{ form.start.label }}{{ form.start }}
           <br>
-          {{ form.start }}
-          <br>
-          {{ form.end }}
+          {{ form.end.label }}{{ form.end }}
           <br>
           {{ form.agg.label }}{{ form.agg }}
           <br>
           {{ form.plot_choice.label }}{{ form.plot_choice }}
           <br>
           {{ form.display_table.label }}{{ form.display_table }}
-          <br>
           {{ form.submit(class="btn btn-outline-info") }}
         </form>
       </div>

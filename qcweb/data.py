@@ -8,7 +8,7 @@ class MyData:
         super(MyData, self).__init__()
         self.at = pd.read_pickle('data/2018_at.pickle.gzip')
         self.at_head = self.at.head()
-        # print('*** loaded the data')
+        print('*** loaded the data')
 
 
 my_data = MyData()
