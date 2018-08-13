@@ -53,7 +53,9 @@ def query():
         session['agg'] = form.agg.data
         session['plot_choice'] = form.plot_choice.data
         session['display_table'] = form.display_table.data
-    return render_template('query.html', title='Query', form=form)
+
+        return redirect(url_for('query'))
+    return render_template('query.html', form=form)
 
 
 @app.route("/plot")
