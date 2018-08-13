@@ -2,6 +2,7 @@
 
 # After a blank line, import third-party libraries.
 from flask import Flask
+from flask import flash
 from flask import make_response
 from flask import redirect
 from flask import render_template
