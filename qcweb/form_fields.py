@@ -16,10 +16,10 @@ class QueryForm(FlaskForm):
     '''
     This class will be updated when we have more input from QC group.
     '''
-    qcreport = StringField('QC Report',validators=[DataRequired()])
+    qcreport = StringField('Type of QC Report',validators=[DataRequired()])
     platform = SelectField(u'Platform: ',
                     choices=[('NovaSeq', 'NovaSeq'),
-                             ('HiSeq X' 'HiSeq X'),
+                             ('HiSeq X', 'HiSeq X'),
                              ('MiSeq', 'MiSeq'),
                              ('HiSeq 2000', 'HiSeq 2000'),
                              ('HiSeq 2500', 'HiSeq 2500')])
