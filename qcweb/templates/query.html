@@ -2,28 +2,31 @@
 {% block content %}
   <body>
     <h1>Query Form</h1>
-    <form method="post">
-      {{ form.hidden_tag() }}
-      {{ form.qcreport.label }}{{ form.qcreport }}
-      <br>
-      {{ form.platform.label }}{{ form.platform }}
-      <br>
-      {{ form.group.label }}{{ form.group }}
-      <br>
-      {{ form.appl.label }}{{ form.appl }}
-      <br>
-      QC group care about 'Run Finished Date'
-      <br>
-      {{ form.start }}
-      <br>
-      {{ form.end }}
-      <br>
-      {{ form.agg.label }}{{ form.agg }}
-      <br>
-      {{ form.plot_choice.label }}{{ form.plot_choice }}
-      <br>
-      {{ form.display_table.label }}{{ form.display_table }}
-      {{ form.submit() }}
-    </form>
+      <div class="content-section">
+        <form method="post">
+          {{ form.hidden_tag() }}
+          {{ form.qcreport.label }}{{ form.qcreport }}
+          <br>
+          {{ form.platform.label }}{{ form.platform }}
+          <br>
+          {{ form.group.label }}{{ form.group }}
+          <br>
+          {{ form.appl.label }}{{ form.appl }}
+          <br>
+          QC group care about 'Run Finished Date'
+          <br>
+          {{ form.start }}
+          <br>
+          {{ form.end }}
+          <br>
+          {{ form.agg.label }}{{ form.agg }}
+          <br>
+          {{ form.plot_choice.label }}{{ form.plot_choice }}
+          <br>
+          {{ form.display_table.label }}{{ form.display_table }}
+          <br>
+          {{ form.submit(class="btn btn-outline-info") }}
+        </form>
+      </div>
   </body>
 {% endblock content %}
