@@ -69,6 +69,11 @@
 
     </main>
 
+{# AKA Cross-site request forgery #}
+<form method='POST'>
+    {# The hidden_tag is CSRF security feature. #}
+    {{ form.hidden_tag() }}
+    {{ form.submit() }}
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
