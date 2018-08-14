@@ -33,8 +33,11 @@ def home():
 
 
 @app.route("/table")
-def table():
-    return render_template('table.html', title='Table', data=head())
+@app.route("/table/<data1>")
+@app.route("/table/<data1>/<data2>")
+def table(data1=0, data2=0):
+    return render_template('table.html', title='Table', data=head(),
+                           data1=data1, data2=data2)
 
 
 @app.route("/query", methods=['GET', 'POST'])
@@ -60,7 +63,7 @@ def query():
         want_table = True  # TODO: make False based on form
         print('results')
         if want_table:
-            return redirect(url_for("table"))
+            return redirect(url_for("table", data1=77, data2=99))
         else:
             return redirect(url_for("plot"))
     # assert 0
