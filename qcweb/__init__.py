@@ -29,6 +29,7 @@ app.config['SECRET_KEY'] = 'mysecretkey'
 @app.route("/")
 @app.route("/home")
 def home():
+    print('hello from /home')
     return render_template('home.html', title='Home')
 
 
@@ -39,10 +40,14 @@ def table():
 
 @app.route("/query", methods=['GET', 'POST'])
 def query():
+    print('hello from /query')
     # create instance of the form
-    form = QueryForm()
+    form = QueryForm(request.form)
     # if the form is valid on submission
-    if form.validate_on_submit():
+    is_valid = form.validate_on_submit()
+    print('validation result', is_valid)
+    if is_valid:
+        print('It validated')
         # grab the data from the query on the form
         session['qcreport'] = form.qcreport.data
         session['platform'] = form.platform.data
@@ -53,14 +58,15 @@ def query():
         session['agg'] = form.agg.data
         session['plot_choice'] = form.plot_choice.data
         session['display_table'] = form.display_table.data
-
-        return redirect(url_for("results"))
+        want_table = True  # TODO: make False based on form
+        print('results')
+        if want_table:
+            return redirect(url_for("table"))
+        else:
+            return redirect(url_for("plot"))
+    # assert 0
+    print('back to query.html')
     return render_template('query.html', title='Query', form=form)
-
-
-@app.route("/query/results")
-def results():
-    return render_template('results.html', title='Results')
 
 
 @app.route("/plot")
