@@ -54,8 +54,13 @@ def query():
         session['plot_choice'] = form.plot_choice.data
         session['display_table'] = form.display_table.data
 
-        return redirect(url_for('query'))
+        return redirect(url_for("results"))
     return render_template('query.html', title='Query', form=form)
+
+
+@app.route("/query/results")
+def results():
+    return render_template('results.html', title='Results')
 
 
 @app.route("/plot")
