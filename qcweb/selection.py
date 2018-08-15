@@ -3,7 +3,7 @@ code here."""
 
 import pandas as pd
 
-from .data import my_data
+from .data import my_data, COLS_KEEP, RUN_FINISHED_DATE
 
 
 def head():
@@ -16,3 +16,8 @@ def sub_demo():
     # select number of rows from dataframe
     at_sub = my_data.at.iloc[-1000:, :]
     return at_sub
+
+
+def by_date_range(start, end):
+    df = my_data.at[COLS_KEEP]
+    return df[(df[RUN_FINISHED_DATE]>=start) & (df[RUN_FINISHED_DATE]<=end)].head()
