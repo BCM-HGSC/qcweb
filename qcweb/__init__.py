@@ -16,6 +16,7 @@ app = Flask(__name__)
 
 
 @app.route("/")
+@app.route("/demo")
 @app.route("/home")
 def home():
     return render_template('home.html', title='Home')
@@ -37,6 +38,20 @@ def plot():
 
 
 @app.route('/plots/p1.png')
+def p1_png():
+    at_sub = sub_demo()
+    image_data, image_type = plot_demo(at_sub)
+    resp = make_response(image_data)
+    resp.content_type = image_type
+    return resp
+
+
+@app.route('/demo/plot')
+def demo_plot():
+    return render_template('demo_plot.html', title='Demo Plot')
+
+
+@app.route('/demo/plot/p1.png')
 def p1_png():
     at_sub = sub_demo()
     image_data, image_type = plot_demo(at_sub)
