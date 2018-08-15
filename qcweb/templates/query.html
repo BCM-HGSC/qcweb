@@ -6,24 +6,24 @@
       <div class="content-section">
         <form method="post">
           {{ form.hidden_tag() }}
-          {{ form.qcreport.label }}{{ form.qcreport }}
+          <!-- {# { form.qcreport.label }}{{ form.qcreport }}
           <br>
           {{ form.platform.label }}{{ form.platform }}
           <br>
           {{ form.group.label }}{{ form.group }}
           <br>
-          {{ form.appl.label }}{{ form.appl }}
-          <br>
+          {{ form.appl.label }}{{ form.appl }#}
+          <br> -->
           <!-- QC group care about 'Run Finished Date' -->
           {{ form.start.label }}{{ form.start }}
           <br>
           {{ form.end.label }}{{ form.end }}
           <br>
-          {{ form.agg.label }}{{ form.agg }}
+          <!-- {# { form.agg.label }}{{ form.agg }}
           <br>
           {{ form.plot_choice.label }}{{ form.plot_choice }}
           <br>
-          {{ form.display_table.label }}{{ form.display_table }}
+          {{ form.display_table.label }}{{ form.display_table } #} -->
           {{ form.submit(class="btn btn-outline-info") }}
         </form>
       </div>

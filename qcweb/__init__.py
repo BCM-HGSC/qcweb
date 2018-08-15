@@ -51,15 +51,15 @@ def query():
     if is_valid:
         print('It validated')
         # grab the data from the query on the form
-        qcreport = form.qcreport.data
-        platform = form.platform.data
-        group = form.group.data
-        appl = form.appl.data
+        # qcreport = form.qcreport.data
+        # platform = form.platform.data
+        # group = form.group.data
+        # appl = form.appl.data
         start = form.start.data
         end = form.end.data
-        agg = form.agg.data
-        plot_choice = form.plot_choice.data
-        display_table = form.display_table.data
+        # agg = form.agg.data
+        # plot_choice = form.plot_choice.data
+        # display_table = form.display_table.data
         want_table = True  # TODO: make False based on form
         print('results')
         if want_table:
