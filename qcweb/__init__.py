@@ -33,11 +33,11 @@ def home():
 
 
 @app.route("/table")
-@app.route("/table/<data1>")
-@app.route("/table/<data1>/<data2>")
-def table(data1=0, data2=0):
-    return render_template('table.html', title='Table', data=head(),
-                           data1=data1, data2=data2)
+@app.route("/table/<start>")
+@app.route("/table/<start>/<end>")
+def table(start=None, end=None):
+    return render_template('table.html', title='Table', data=data,
+                           start=start, end=end)
 
 
 @app.route("/query", methods=['GET', 'POST'])
