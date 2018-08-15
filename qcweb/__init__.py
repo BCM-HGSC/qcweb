@@ -63,7 +63,9 @@ def query():
         want_table = True  # TODO: make False based on form
         print('results')
         if want_table:
-            return redirect(url_for("table", data1=77, data2=99))
+            print(start)
+            print(type(start))
+            return redirect(url_for("table", start=start.isoformat(), end=end.isoformat()))
         else:
             return redirect(url_for("plot"))
     # assert 0
