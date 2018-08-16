@@ -24,32 +24,6 @@ import seaborn as sns
 app = Flask(__name__)
 
 
-def initialize():
-    global df_at
-    global df_at_head
-    df_at = pd.read_pickle('data/at.pickle.gzip')
-    df_at_head = df_at.head()
-
-
-@app.route("/")
-@app.route("/home")
-def home():
-    # by passing in variable tests (1st one), you get the tests in home.html
-    # argument tests (2nd one) is equal to the dummy data
-    return render_template('home.html', title='Home')
-
-
-@app.route("/table")
-def table():
-    return render_template('table.html', title='Table', data=df_at_head)
-
-
-@app.route('/plot')
-def plot():
-    return render_template('plot.html', title='Plot')
-
-
-@app.route('/plots/p1.png')
 def p1_png():
     img = io.BytesIO()
 
@@ -158,7 +132,3 @@ def make_explode(num_rows, explode_index):
 def make_base(length):
     return [0,]*length
 
-
-if __name__ == '__main__':
-    initialize()
-    app.run(debug=True)
