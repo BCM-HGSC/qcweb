@@ -58,18 +58,7 @@ def p1_png():
     mpl.rcParams['patch.force_edgecolor'] = True
     sns.set(rc={'figure.figsize':(10.6, 10.6)})
 
-    # QC group care about 'Run Finished Date'
-    cols_keep = ['Lane Barcode',
-                 'Midpool Library',
-                 'Library',
-                 'Run Finished Date',
-                 'Total MB',
-                 'Prefix',
-                 'Group',
-                 'Application',
-                 'Numeric Total MB']
-
-    df_ats = df_at[cols_keep]
+    df_ats = df_at[COLS_KEEP]
 
     # groupby by Application
     df_appl = df_ats.groupby('Application')

@@ -3,7 +3,7 @@ code here."""
 
 import pandas as pd
 
-from .data import my_data
+from .data import my_data, COLS_KEEP, COLUMNS_TO_KEEP
 
 
 def head():
