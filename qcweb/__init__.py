@@ -51,10 +51,11 @@ def demo_plot():
     return render_template('demo_plot.html', title='Demo Plot')
 
 
-@app.route('/demo/plot/p1.png')
-def p1_png():
-    at_sub = sub_demo()
-    image_data, image_type = plot_demo(at_sub)
+@app.route('/demo/plot/p2.png')
+def p2_png():
+    df_appl2 = sub_appl()
+    print(df_appl2)
+    image_data, image_type = at_appl_plot(df_appl2)
     resp = make_response(image_data)
     resp.content_type = image_type
     return resp
