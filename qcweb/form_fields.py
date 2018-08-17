@@ -58,10 +58,10 @@ class QueryForm(FlaskForm):
                              ('small RNA', 'small RNA')])
 
     # QC group care about Run Finished Date
-    # start = DateField(u'Start: ', format='%Y-%m-%d')
-    # end = DateField(u'End: ', format='%Y-%m-%d')
-    start = IntegerField()
-    end = IntegerField()
+    start = DateField(u'Start: ', format='%Y-%m-%d')
+    end = DateField(u'End: ', format='%Y-%m-%d')
+    # start = IntegerField()
+    # end = IntegerField()
 
     # for pandas groupby filter
     agg = SelectField(u'Aggregation: ',
