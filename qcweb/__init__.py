@@ -2,14 +2,14 @@
 
 # After a blank line, import third-party libraries.
 from flask import Flask
-from flask import render_template
-from flask import url_for
-from flask import request
 from flask import make_response
+from flask import render_template
+from flask import request
+from flask import url_for
 
 # After another blank line, import local libraries.
-from .selection import head, sub_demo
-from .plotting import plot_demo
+from .selection import head, sub_demo, sub_appl
+from .plotting import plot_demo, at_appl_plot
 
 # flask knows where to look for static & template files
 app = Flask(__name__)

@@ -3,9 +3,13 @@ pandas code. There should be no Flask code."""
 
 import io
 
-import matplotlib.pyplot as plt
+from matplotlib import cm # color
 import matplotlib as mpl
+import matplotlib.pylab as pylab
+import matplotlib.pyplot as plt
+import numpy as np
 import seaborn as sns
+import pandas as pd
 
 
 def plot_demo(data_frame):
