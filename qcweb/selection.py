@@ -23,7 +23,7 @@ def sub_appl():
     # groupby by Application
     df_appl = df_ats.groupby('Application')
     df_appl2 = (df_appl['Numeric Total MB'].sum()).reset_index()
-    df_appl2['Total TB'] = (df_appl2['Numeric Total MB'] / 1000000)
+    df_appl2['Total TB'] = (df_appl2['Numeric Total MB'] / 1_000_000)
     return df_appl2
 
 
@@ -32,5 +32,5 @@ def sub_group():
     # groupby by Group
     df_grp = df_ats.groupby('Group')
     df_grp2 = (df_grp['Numeric Total MB'].sum()).reset_index()
-    df_grp2['Total TB'] = (df_grp2['Numeric Total MB'] / 1000000)
+    df_grp2['Total TB'] = (df_grp2['Numeric Total MB'] / 1_000_000)
     return df_grp2
