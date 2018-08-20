@@ -3,12 +3,5 @@
     <h1>Table Page</h1>
     <p>{{ data1 }}</p>
     <p>{{ data2 }}</p>
-    <table border="1" class="dataframe">
-      <thead>
-        <!-- element.style text-align should be center -->
-        <tr style="text-align: center;">
-        </tr>
-      </thead>
-     </table>
     {{ data.to_html() | safe }}
 {% endblock content %}
