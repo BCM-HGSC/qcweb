@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <h1>Table Page</h1>
+    <p>{{ start }}</p>
+    <p>{{ end }}</p>
     {{ data.to_html(justify='center') | safe }}
 {% endblock content %}
