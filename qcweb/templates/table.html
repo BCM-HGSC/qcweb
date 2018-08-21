@@ -3,5 +3,10 @@
     <h1>Table Page</h1>
     <!-- p>{{ data1 }}</p -->
     <!-- p>{{ data2 }}</p -->
+    <p>2018 All Time</p>
     {{ data.to_html(justify='center') | safe }}
+    <hr>
+    <br>
+    <p>2007-2018 All Time</p>
+    {{ demo_data.to_html(justify='center') | safe }}
 {% endblock content %}
