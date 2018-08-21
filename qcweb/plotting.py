@@ -73,6 +73,7 @@ def at_appl_plot(data_frame):
 
 
 def at_grp_plot(data_frame):
+    img = io.BytesIO()
 
     # matplot/ seaborn style setting
     sns.set_style('whitegrid')
@@ -89,7 +90,18 @@ def at_grp_plot(data_frame):
     sizes = grp_sizes
 
     # grp_pie
-    p3 = make_pie(title,labels, sizes, 160, 20, 17)
+    make_pie(title,labels, sizes, 160, 20, 17)
+
+    # savefig
+    # p1.figure.tight_layout()
+    plt.savefig(img, format='png')
+
+    # results
+    plt.close()
+    image_data = img.getvalue()
+    img.close()
+    image_type = "image/png"
+    return image_data, image_type
 
 
 # functions used to create pie chart
