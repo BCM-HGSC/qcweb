@@ -38,7 +38,9 @@ def home():
 @app.route("/table/<data1>")
 @app.route("/table/<data1>/<data2>")
 def table(data1=0, data2=0):
-    return render_template('table.html', title='Table', data=head(),
+    return render_template('table.html', title='Table',
+                           data=head(),
+                           demo_data=at_head(),
                            data1=data1, data2=data2)
 
 
@@ -92,11 +94,21 @@ def demo_plot():
     return render_template('demo_plot.html', title='Demo Plot')
 
 
-@app.route('/demo/plot/p2.png')
-def p2_png():
+@app.route('/demo/plot/p1.png')
+def demo_p1_png():
     df_appl2 = sub_appl()
     print(df_appl2)
     image_data, image_type = at_appl_plot(df_appl2)
+    resp = make_response(image_data)
+    resp.content_type = image_type
+    return resp
+
+
+@app.route('/demo/plot/p2.png')
+def demo_p2_png():
+    df_grp2 = sub_group()
+    print(df_grp2)
+    image_data, image_type = at_grp_plot(df_grp2)
     resp = make_response(image_data)
     resp.content_type = image_type
     return resp
