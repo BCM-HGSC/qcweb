@@ -1,7 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
     <h1>Table Page</h1>
-    <p>{{ start }}</p>
-    <p>{{ end }}</p>
+    <p>Here is the query info you entered:</p>
+    <ul>
+      <li>QC Report: {{ qcreport }}</li>
+      <li>Platform: {{ platform }}</li>
+      <li>Group: {{ group }}</li>
+      <li>Application: {{ appl }}</li>
+      <li>Start: {{ start }}</li>
+      <li>End: {{ end }}</li>
+      <li>Display Table: {{ display_table }}</li>
+    </ul>
+    <br>
     {{ data.to_html(justify='center') | safe }}
 {% endblock content %}
