@@ -3,7 +3,7 @@ code here."""
 
 import pandas as pd
 
-from .data import my_data, COLS_KEEP, RUN_FINISHED_DATE
+from .data import my_data, COLS_KEEP, RUN_FINISHED_DATE, CURRENT_COLUMNS_KEEP
 
 
 def head():

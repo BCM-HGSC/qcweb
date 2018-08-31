@@ -13,6 +13,37 @@ COLS_KEEP = ['Lane Barcode',
              'Prefix',
              'Group']
 
+BASE_COLUMNS = ['Lane Barcode',
+                'Metaproject',
+                'Midpool Library',
+                'Library',
+                'Collaborator Sample ID',
+                'Internal Processing Sample ID',
+                'Machine Name',
+                'Total MB',
+                'Average Coverage',
+                'Chimeric rate',
+                'Per 10 Coverage Bases',
+                'Per 20 Coverage Bases',
+                'Ref Genome Path',
+                'Result Path',
+                'Q20 Bases',
+                'VerifyBamid Contamination Rate']
+
+RUN_DATE_COLUMNS = ['Run Start Date',
+                    'Run Finished Date',
+                    'Analysis Start Date',
+                    'Analysis Alignment Stats Finished Date',
+                    'Analysis Finished Date']
+
+ADD1_COLUMNS = ['Prefix',
+                'Group']
+
+ADD2_COLUMNS = ['Application',
+                'Numeric Total MB']
+
+CURRENT_COLUMNS_KEEP = BASE_COLUMNS + ADD1_COLUMNS
+
 
 class MyData:
     def __init__(self):
