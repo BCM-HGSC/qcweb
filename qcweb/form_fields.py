@@ -22,7 +22,8 @@ class QueryForm(FlaskForm):
                              ('HiSeq X', 'HiSeq X'),
                              ('MiSeq', 'MiSeq'),
                              ('HiSeq 2000', 'HiSeq 2000'),
-                             ('HiSeq 2500', 'HiSeq 2500')])
+                             ('HiSeq 2500', 'HiSeq 2500'),
+                             ('GA', 'GA')])
 
     group = SelectField(u'Group: ',
                     choices=[('ADSP', 'ADSP'),
