@@ -21,3 +21,21 @@ def sub_demo():
 def by_date_range(start, end):
     df = my_data.at[COLS_KEEP]
     return df[(df[RUN_FINISHED_DATE]>=start) & (df[RUN_FINISHED_DATE]<=end)].head()
+
+
+def by_platform(platform):
+    dfs = at[CURRENT_COLUMNS_KEEP]
+    if platform == 'HiSeq X':
+        df_pf = dfs[dfs['Machine Name'].str[:3] == 'E00']
+    elif platform == 'HiSeq 2000':
+        df_pf = dfs[dfs['Machine Name'].str[:3] == '700']
+    elif platform == 'HiSeq 2500':
+        df_pf = dfs[dfs['Machine Name'].str[:3] == 'D00']
+    elif platform == 'MiSeq':
+        df_pf = dfs[(dfs['Machine Name'].str[-3:] == '888') | (dfs['Machine Name'].str[-3:] == '178') ]
+    elif platform == 'NovaSeq':
+        df_pf = dfs[dfs['Machine Name'].str[:3] == 'A00']
+    elif platform == 'GA':
+        df_pf = dfs[dfs['Machine Name'].str[:3] == 'EAS']
+    # print(len(df_pf))
+    return df_pf
