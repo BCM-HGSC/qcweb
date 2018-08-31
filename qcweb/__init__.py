@@ -16,7 +16,7 @@ from wtforms import (BooleanField, DateField, DateTimeField,
 from wtforms.validators import DataRequired
 
 # After another blank line, import local libraries.
-from .selection import by_date_range, head, sub_demo
+from .selection import by_date_range, head, sub_demo, by_platform
 from .plotting import plot_demo
 from .form_fields import QueryForm
 
@@ -35,10 +35,13 @@ def home():
 @app.route("/table")
 @app.route("/table/<start>")
 @app.route("/table/<start>/<end>")
+@app.route("/table/<start>/<end>/<platform>")
 def table(qcreport=None, platform=None,
           group=None, appl=None,
           start=None, end=None,
           agg=None, display_table=None):
+    if platform:
+        data = by_platform(platform)
     if start and end:
         data = by_date_range(start, end)
     else:

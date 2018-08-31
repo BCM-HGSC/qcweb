@@ -24,7 +24,7 @@ def by_date_range(start, end):
 
 
 def by_platform(platform):
-    dfs = at[CURRENT_COLUMNS_KEEP]
+    dfs = my_data.at[CURRENT_COLUMNS_KEEP]
     if platform == 'HiSeq X':
         df_pf = dfs[dfs['Machine Name'].str[:3] == 'E00']
     elif platform == 'HiSeq 2000':
