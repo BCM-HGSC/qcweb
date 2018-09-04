@@ -50,7 +50,8 @@ def table(qcreport=None, platform=None,
                            qcreport=qcreport, platform=platform,
                            group=group, appl=appl,
                            start=start, end=end,
-                           agg=agg, display_table=display_table)
+                           agg=agg, display_table=display_table,
+                           num_rows=len(data))
 
 
 @app.route("/query", methods=['GET', 'POST'])
