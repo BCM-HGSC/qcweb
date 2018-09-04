@@ -6,6 +6,30 @@ import pandas as pd
 from .data import my_data, COLS_KEEP, RUN_FINISHED_DATE, CURRENT_COLUMNS_KEEP
 
 
+def limit_rows(data, max_rows=20):
+    result = data
+    if len(data) > max_rows:
+        num_last = max_rows // 2
+        num_first = max_rows - num_last
+        result = pd.concat([data.head(num_first), data.tail(num_last)])
+    return result
+
+
+def query_ses(platform, group, appl, start, end):
+    filter_by_date = start and end
+    is_filtering = platform or group or appl or filter_by_date
+    result_df = my_data.at
+    if platform:
+        result_df = by_platform(result_df, platform)
+    if group:
+        result_df = by_group(result_df, group)
+    if appl:
+        result_df = by_appl(result_df, appl)
+    if filter_by_date:
+        result_df = by_date_range(result_df, start, end)
+    return result_df
+
+
 def head():
     """Demonstration of a function that returns a data frame"""
     return my_data.at_head
@@ -18,13 +42,13 @@ def sub_demo():
     return at_sub
 
 
-def by_date_range(start, end):
-    df = my_data.at[COLS_KEEP]
-    return df[(df[RUN_FINISHED_DATE]>=start) & (df[RUN_FINISHED_DATE]<=end)].head()
+def by_date_range(result_df, start, end):
+    df = result_df
+    return df[(df[RUN_FINISHED_DATE]>=start) & (df[RUN_FINISHED_DATE]<=end)]
 
 
-def by_platform(platform):
-    dfs = my_data.at[CURRENT_COLUMNS_KEEP]
+def by_platform(result_df, platform):
+    dfs = result_df
     if platform == 'HiSeq X':
         df_pf = dfs[dfs['Machine Name'].str[:3] == 'E00']
     elif platform == 'HiSeq 2000':
@@ -39,3 +63,11 @@ def by_platform(platform):
         df_pf = dfs[dfs['Machine Name'].str[:3] == 'EAS']
     # print(len(df_pf))
     return df_pf
+
+
+def by_group(result_df, group):
+    return result_df  # TODO: Implement!
+
+
+def by_appl(result_df, appl):
+    return result_df  # TODO: Implement!

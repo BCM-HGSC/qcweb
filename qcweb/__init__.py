@@ -16,7 +16,8 @@ from wtforms import (BooleanField, DateField, DateTimeField,
 from wtforms.validators import DataRequired
 
 # After another blank line, import local libraries.
-from .selection import by_date_range, head, sub_demo, by_platform
+from .data import CURRENT_COLUMNS_KEEP
+from .selection import head, sub_demo, query_ses, limit_rows
 from .plotting import plot_demo
 from .form_fields import QueryForm
 
@@ -40,13 +41,9 @@ def table(qcreport=None, platform=None,
           group=None, appl=None,
           start=None, end=None,
           agg=None, display_table=None):
-    if platform:
-        data = by_platform(platform)
-    if start and end:
-        data = by_date_range(start, end)
-    else:
-        data = head()
-    return render_template('table.html', title='Table', data=data,
+    data = query_ses(platform, group, appl, start, end)
+    return render_template('table.html', title='Table',
+                           data=limit_rows(data)[CURRENT_COLUMNS_KEEP],
                            qcreport=qcreport, platform=platform,
                            group=group, appl=appl,
                            start=start, end=end,
