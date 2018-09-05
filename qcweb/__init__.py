@@ -36,7 +36,7 @@ def home():
 @app.route("/table")
 @app.route("/table/<start>")
 @app.route("/table/<start>/<end>")
-@app.route("/table/<start>/<end>/<platform>")
+@app.route("/table/<start>/<end>/<platform>/<group>")
 def table(qcreport=None, platform=None,
           group=None, appl=None,
           start=None, end=None,
