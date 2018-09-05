@@ -65,8 +65,37 @@ def by_platform(result_df, platform):
     return df_pf
 
 
+# TODO: implement QC group names
+# complete list of current QC group names
+CURRENT_GROUP_NAMES = '''
+    TOPMed
+    CCDG
+    Complex
+    CHARGE
+    TEDDY
+    Cancer
+    Research
+    Mendelian
+    TCGA
+    Metagenomic
+    ADSP
+    Gabriella
+    Comparative
+    Other
+    Insects
+    TG
+    H3
+    Ruii
+    Virology
+    BAC
+'''.split()
+
+
 def by_group(result_df, group):
-    return result_df  # TODO: Implement!
+    dfs = result_df
+    group = group
+    df_grp = dfs[dfs['Group'] == group]
+    return df_grp
 
 
 def by_appl(result_df, appl):
