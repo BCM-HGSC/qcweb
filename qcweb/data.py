@@ -15,24 +15,29 @@ COLS_KEEP = ['Lane Barcode',
              'Group']
 
 BASE_COLUMNS = ['Lane Barcode',
+                'Run Name',
                 'Metaproject',
                 'Midpool Library',
                 'Library',
+                'Run Finished Date',
                 'Collaborator Sample ID',
                 'Internal Processing Sample ID',
                 'Machine Name',
                 'Total MB',
+                'Ref Genome Path',
+                'Result Path']
+
+STAT_COLUMNS = ['Unique Aligned MB',
+                '% Align Read 1',
+                '% Align Read 2',
                 'Average Coverage',
                 'Chimeric rate',
                 'Per 10 Coverage Bases',
                 'Per 20 Coverage Bases',
-                'Ref Genome Path',
-                'Result Path',
                 'Q20 Bases',
                 'VerifyBamid Contamination Rate']
 
 RUN_DATE_COLUMNS = ['Run Start Date',
-                    'Run Finished Date',
                     'Analysis Start Date',
                     'Analysis Alignment Stats Finished Date',
                     'Analysis Finished Date']
@@ -43,7 +48,7 @@ ADD1_COLUMNS = ['Prefix',
 ADD2_COLUMNS = ['Application',
                 'Numeric Total MB']
 
-CURRENT_COLUMNS_KEEP = BASE_COLUMNS + RUN_DATE_COLUMNS + ADD1_COLUMNS
+CURRENT_COLUMNS_KEEP = BASE_COLUMNS + ADD1_COLUMNS
 
 
 class MyData:
