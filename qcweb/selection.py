@@ -101,4 +101,7 @@ def by_group(result_df, group):
 
 
 def by_appl(result_df, appl):
-    return result_df  # TODO: Implement!
+    dfs = result_df
+    appl = appl
+    df_appl = dfs[dfs['Application'] == appl]
+    return df_appl
