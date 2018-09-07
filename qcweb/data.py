@@ -48,13 +48,12 @@ ADD1_COLUMNS = ['Prefix',
 ADD2_COLUMNS = ['Application',
                 'Numeric Total MB']
 
-CURRENT_COLUMNS_KEEP = BASE_COLUMNS + ADD1_COLUMNS
+CURRENT_COLUMNS_KEEP = BASE_COLUMNS + ADD1_COLUMNS + ADD2_COLUMNS
 
 
 class MyData:
     def __init__(self):
         super(MyData, self).__init__()
-        self.at = pd.read_pickle('data/2018_at.pickle.gzip')
         self.at_head = self.at.head()
         print('*** loaded the data with length of', len(self.at))
 
