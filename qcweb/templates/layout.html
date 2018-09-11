@@ -27,10 +27,10 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="/">Home</a>
-              <a class="nav-item nav-link" href="/query">Query</a>
-              <a class="nav-item nav-link" href="/table">Table</a>
-              <a class="nav-item nav-link" href="/plot">Plot</a>
+              <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
+              <a class="nav-item nav-link" href="{{ url_for('query') }}">Query</a>
+              <a class="nav-item nav-link" href="{{ url_for('table') }}">Table</a>
+              <a class="nav-item nav-link" href="{{ url_for('plot') }}">Plot</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
