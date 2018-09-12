@@ -4,7 +4,7 @@ from wtforms import (StringField, BooleanField,
                      DateField, DateTimeField,
                      RadioField,SelectField,TextField,
                      TextAreaField,SubmitField, IntegerField)
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, InputRequired
 
 
 app = Flask(__name__)
