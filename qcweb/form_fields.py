@@ -86,6 +86,7 @@ class QueryForm(FlaskForm):
     # # display_table  = BooleanField("Display Table: ")
     display_table = RadioField('Display Table:',
                     validators=[InputRequired("Please choose Yes or No.")],
-                    choices=[('yes','Yes'), ('no','No')])
+                    choices=[('yes','Yes'), ('no','No')],
+                    default='yes')
 
     submit = SubmitField('Submit')
