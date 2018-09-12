@@ -59,8 +59,10 @@ def query():
     # if the form is valid on submission
     is_valid = form.validate_on_submit()
     print('validation result', is_valid)
+
     if is_valid:
         print('It validated')
+        flash(f'Form created for {form.qcreport.data}!', 'success')
         # grab the data from the query on the form
         qcreport = form.qcreport.data
         platform = form.platform.data
@@ -82,9 +84,12 @@ def query():
                                     agg=agg, display_table=display_table))
         else:
             return redirect(url_for("plot"))
+    elif not form.validate_on_submit:
+        flash('Submission error, please check the form', 'success')
     # assert 0
     print('back to query.html')
-    return render_template('query.html', title='Query', form=form)
+    return render_template('query.html', title='Query', form=form,
+            error=form.errors)
 
 
 @app.route("/plot")
