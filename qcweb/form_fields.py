@@ -18,6 +18,7 @@ class QueryForm(FlaskForm):
     '''
     qcreport = StringField('Type of QC Report: ',validators=[DataRequired()])
     platform = SelectField(u'Platform: ',
+                    validators=[InputRequired("Please choose a Platform.")],
                     choices=[('NovaSeq', 'NovaSeq'),
                              ('HiSeq X', 'HiSeq X'),
                              ('MiSeq', 'MiSeq'),
@@ -26,6 +27,7 @@ class QueryForm(FlaskForm):
                              ('GA', 'GA')])
 
     group = SelectField(u'Group: ',
+                    validators=[InputRequired("Please choose a Group.")],
                     choices=[('ADSP', 'ADSP'),
                              ('BAC', 'BAC'),
                              ('CCDG', 'CCDG'),
@@ -48,6 +50,7 @@ class QueryForm(FlaskForm):
                              ('Virology & Microbiology', 'Virology & Microbiology')])
 
     appl = SelectField(u'Application: ',
+                    validators=[InputRequired("Please choose a Application.")],
                     choices=[('Amplicon Pool', 'Amplicon Pool'),
                              ('CHIP-Seq', 'CHIP-Seq'),
                              ('R & D', 'R & D'),
@@ -59,14 +62,19 @@ class QueryForm(FlaskForm):
                              ('small RNA', 'small RNA')])
 
     # QC group care about Run Finished Date
-    start = DateTimeField(u'Start: ', format='%Y-%m-%dT%H:%M:%S')
-    end = DateTimeField(u'End: ', format='%Y-%m-%dT%H:%M:%S')
+    start = DateTimeField(u'Start: ',
+                    validators=[InputRequired("Please add a Start Date.")],
+                    format='%Y-%m-%dT%H:%M:%S')
+    end = DateTimeField(u'End: ',
+                    validators=[InputRequired("Please add an End Date.")],
+                    format='%Y-%m-%dT%H:%M:%S')
     # start = IntegerField()
     # end = IntegerField()
 
     # for pandas groupby filter
     agg = SelectField(u'Aggregation: ',
-                choices=[('by_group', 'By Group'),
+                    validators=[InputRequired("Please choose an Aggregation.")],
+                    choices=[('by_group', 'By Group'),
                          ('by_appl', 'By Application')])
 
     # graphs QC group presents and routinely uses
@@ -76,6 +84,8 @@ class QueryForm(FlaskForm):
     #                                ('plot_three', 'Recent 75-ples')])
     #
     # # display_table  = BooleanField("Display Table: ")
-    display_table = RadioField('Display Table:', choices=[('yes','Yes'), ('no','No')])
+    display_table = RadioField('Display Table:',
+                    validators=[InputRequired("Please choose Yes or No.")],
+                    choices=[('yes','Yes'), ('no','No')])
 
     submit = SubmitField('Submit')
