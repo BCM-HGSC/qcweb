@@ -56,6 +56,10 @@ def query():
     print('hello from /query')
     # create instance of the form
     form = QueryForm(request.form)
+    # Bail of not a POST.
+    if request.method != 'POST':
+        assert request.method == 'GET'
+        return render_template('query.html', title='Query', form=form)
     # if the form is valid on submission
     is_valid = form.validate_on_submit()
     print('validation result', is_valid)
