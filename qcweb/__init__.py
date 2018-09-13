@@ -91,6 +91,8 @@ def query():
     elif not form.validate_on_submit:
         flash('Submission error, please check the form', 'success')
     # assert 0
+    from pprint import pprint
+    pprint(form.errors)
     print('back to query.html')
     return render_template('query.html', title='Query', form=form,
             error=form.errors)
