@@ -85,7 +85,7 @@ def query():
         else:
             return redirect(url_for("plot"))
     elif not form.validate_on_submit:
-        flash('Submission error, please check the form', 'success')
+        flash('Submission error, please check the form', 'warning')
     # assert 0
     print('back to query.html')
     return render_template('query.html', title='Query', form=form,
