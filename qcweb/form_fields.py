@@ -4,7 +4,7 @@ from wtforms import (StringField, BooleanField,
                      DateField, DateTimeField,
                      RadioField,SelectField,TextField,
                      TextAreaField,SubmitField, IntegerField)
-from wtforms.validators import DataRequired, InputRequired
+from wtforms.validators import DataRequired, InputRequired, Length
 
 
 app = Flask(__name__)
@@ -16,7 +16,8 @@ class QueryForm(FlaskForm):
     '''
     This class will be updated when we have more input from QC group.
     '''
-    qcreport = StringField('Type of QC Report: ',validators=[DataRequired()])
+    qcreport = StringField('Type of QC Report: ',
+                           validators=[DataRequired(), Length(min=2, max=20)])
     platform = SelectField(u'Platform: ',
                     validators=[InputRequired("Please choose a Platform.")],
                     choices=[('NovaSeq', 'NovaSeq'),
