@@ -4,9 +4,22 @@
   <body>
     <h1>Query Form</h1>
       <div class="content-section">
-          <form method="POST">
+          <form method="POST" action="">
           {{ form.hidden_tag() }}
-          {{ form.qcreport.label }}{{ form.qcreport }}
+          <form class="form-inline">
+            <div class="form-inline">
+              {{ form.qcreport.label }}
+              {% if form.qcreport.errors %}
+                {{ form.qcreport(class="is-valid") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.qcreport.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+              {% else %}
+              {{ form.qcreport }}
+              {% endif %}
+            </div>
           <br>
           {{ form.platform.label }}{{ form.platform }}
           <br>
@@ -25,8 +38,7 @@
           <br>
           {{ form.display_table.label }}{{ form.display_table }}
           {{ form.submit(class="btn btn-outline-info") }}
-        </form>
+          </form>
       </div>
-    </nav>
   </body>
 {% endblock content %}
