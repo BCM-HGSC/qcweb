@@ -3,26 +3,38 @@
 {% block content %}
   <body>
     <h1>Query Form</h1>
+    {% for message in form.qcreport.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.platform.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.group.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.appl.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.start.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.end.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.agg.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
       <div class="content-section">
           <form method="POST" action="">
           {{ form.hidden_tag() }}
-          <form class="form-inline">
-            <div class="form-inline">
-              {{ form.qcreport.label }}
-              {% if form.qcreport.errors %}
-                {{ form.qcreport(class="is-valid") }}
-                  <div class="invalid-feedback">
-                    {% for error in form.qcreport.errors %}
-                      <span>{{ error }}</span>
-                    {% endfor %}
-                  </div>
-              {% else %}
-              {{ form.qcreport }}
-              {% endif %}
-              <small class="text-muted ml-2">
-                must be 2-20 characters long...
-              </small>
-            </div>
           <br>
           {{ form.platform.label }}{{ form.platform }}
           <br>
