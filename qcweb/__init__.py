@@ -85,8 +85,6 @@ def query():
                                     agg=agg, display_table=display_table))
         else:
             return redirect(url_for("plot"))
-    else:
-        flash('Submission error, please check the form', 'warning')
     # assert 0
     print('back to query.html')
     return render_template('query.html', title='Query', form=form,
