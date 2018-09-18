@@ -35,6 +35,10 @@
       <div class="content-section">
           <form method="POST" action="" target="_blank">
           {{ form.hidden_tag() }}
+          {{ form.qcreport.label }}{{ form.qcreport }}
+            <small class="text-muted ml-2">
+              must be 2-20 characters long...
+            </small>
           <br>
           {{ form.platform.label }}{{ form.platform }}
           <br>
@@ -44,8 +48,14 @@
           <br>
           <!-- QC group care about 'Run Finished Date' -->
           {{ form.start.label }}{{ form.start }}
+              <small class="text-muted ml-2">
+                must be '%Y-%m-%dT%H:%M:%S'
+              </small>
           <br>
           {{ form.end.label }}{{ form.end }}
+              <small class="text-muted ml-2">
+                must be '%Y-%m-%dT%H:%M:%S'
+              </small>
           <br>
           {{ form.agg.label }}{{ form.agg }}
           <br>
