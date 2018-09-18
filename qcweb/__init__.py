@@ -11,7 +11,8 @@ from flask import url_for
 from flask_wtf import FlaskForm
 from wtforms import (BooleanField, DateField, DateTimeField,
                      RadioField, SelectField, StringField,
-                     SubmitField, TextAreaField, TextField)
+                     SubmitField, TextAreaField, TextField,
+                     ValidationError)
 
 from wtforms.validators import DataRequired
 
