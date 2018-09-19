@@ -57,38 +57,37 @@ def query():
     print('hello from /query')
     # create instance of the form
     form = QueryForm(request.form)
-    # if the form is valid on submission
-    is_valid = form.validate_on_submit()
-    print('validation result', is_valid)
-
-    if is_valid:
-        print('It validated')
-        flash(f'Form created for {form.qcreport.data}!', 'success')
-        # grab the data from the query on the form
-        qcreport = form.qcreport.data
-        platform = form.platform.data
-        group = form.group.data
-        appl = form.appl.data
-        start = form.start.data
-        end = form.end.data
-        agg = form.agg.data
-        # plot_choice = form.plot_choice.data
-        display_table = form.display_table.data
-        want_table = True  # TODO: make False based on form
-        print('results')
-        if want_table:
-            print(start)
-            print(type(start))
-            return redirect(url_for("table", qcreport=qcreport, platform=platform,
-                                    group=group, appl=appl,
-                                    start=start.isoformat(), end=end.isoformat(),
-                                    agg=agg, display_table=display_table))
-        else:
-            return redirect(url_for("plot"))
-    elif is_valid != True:
-        flash(f'Form created for {form.qcreport.data}!', 'warning')
-    # assert 0
-    print('back to query.html')
+    if request.method == 'POST':
+        # if the form is valid on submission
+        is_valid = form.validate_on_submit()
+        print('validation result', is_valid)
+        if is_valid:
+            print('It validated')
+            flash(f'Query succussful {form.qcreport.data}!', 'success')
+            # grab the data from the query on the form
+            qcreport = form.qcreport.data
+            platform = form.platform.data
+            group = form.group.data
+            appl = form.appl.data
+            start = form.start.data
+            end = form.end.data
+            agg = form.agg.data
+            # plot_choice = form.plot_choice.data
+            display_table = form.display_table.data
+            want_table = True  # TODO: make False based on form
+            print('results')
+            if want_table:
+                print(start)
+                print(type(start))
+                return redirect(url_for("table", qcreport=qcreport, platform=platform,
+                                        group=group, appl=appl,
+                                        start=start.isoformat(), end=end.isoformat(),
+                                        agg=agg, display_table=display_table))
+            else:
+                return redirect(url_for("plot"))
+        assert not is_valid
+        flash(f'Form not valid {form.qcreport.data}!', 'warning')
+        print('back to query.html')
     return render_template('query.html', title='Query', form=form,
             error=form.errors)
 
