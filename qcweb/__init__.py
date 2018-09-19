@@ -85,6 +85,8 @@ def query():
                                     agg=agg, display_table=display_table))
         else:
             return redirect(url_for("plot"))
+    elif is_valid != True:
+        flash(f'Form created for {form.qcreport.data}!', 'warning')
     # assert 0
     print('back to query.html')
     return render_template('query.html', title='Query', form=form,
