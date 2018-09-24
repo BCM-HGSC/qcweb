@@ -1,11 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
+  <h2>Welcome to QC Report</h2>
       <article class="media content-section">
         <div class="media-body">
-          <h3>Welcome to QC Report</h3>
-          <p>Powered by Python and Flask...</p>
-          <br>
-        <img src="http://flask.pocoo.org/static/logo/flask.svg" alt="">
+          <p>Distribution by Group</p>
+          <img src="/home/plot1" alt="graph">
         </div>
       </article>
 {% endblock content %}
+{% block sidebar %}
+      <br>
+      <br>
+      <article class="media content-section">
+        <div class="media-body">
+          <p>Distribution by Application</p>
+          <img src="/home/plot2" alt="graph">
+        </div>
+      </article>
+{% endblock sidebar %}
