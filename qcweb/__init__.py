@@ -35,6 +35,26 @@ def home():
     return render_template('home.html', title='Home')
 
 
+@app.route("/home/plot1")
+def home_p1_png():
+    df_grp = home_grp()
+    print(df_grp)
+    image_data, image_type = grp_bar_plot(df_grp)
+    resp = make_response(image_data)
+    resp.content_type = image_type
+    return resp
+
+
+@app.route("/home/plot2")
+def home_p2_png():
+    df_appl = home_appl()
+    print(df_appl)
+    image_data, image_type = appl_pie_plot(df_appl)
+    resp = make_response(image_data)
+    resp.content_type = image_type
+    return resp
+
+
 @app.route("/table")
 @app.route("/table/<start>")
 @app.route("/table/<start>/<end>")
