@@ -17,8 +17,10 @@ from wtforms.validators import DataRequired
 
 # After another blank line, import local libraries.
 from .data import CURRENT_COLUMNS_KEEP
-from .selection import head, sub_demo, query_ses, limit_rows
-from .plotting import plot_demo
+from .selection import (head, sub_demo,
+                        home_grp, home_appl,
+                        query_ses, limit_rows)
+from .plotting import plot_demo, grp_bar_plot, appl_pie_plot
 from .form_fields import QueryForm
 
 # flask knows where to look for static & template files
