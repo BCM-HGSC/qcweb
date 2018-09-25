@@ -85,6 +85,7 @@ def appl_pie_plot(data_frame):
 
     fig1, ax1 = plt.subplots()
     ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+            labeldistance=1.2, wedgeprops = {'linewidth': 0.8, 'edgecolor': 'w'},
             shadow=True, startangle=90)
     ax1.axis('equal')
 
