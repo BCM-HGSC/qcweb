@@ -17,7 +17,7 @@ COLS_KEEP = ['LANE_BARCODE',
 
 BASE_COLUMNS = ['LANE_BARCODE',
                 'RUN_NAME',
-                'METAPROJECT',
+                'METAPROJECT_NAME',
                 'MIDPOOL_LIBRARY',
                 'LIBRARY',
                 'RUN_FINISHED_DATE',
@@ -54,7 +54,7 @@ class MyData:
     def __init__(self):
         super(MyData, self).__init__()
         # self.at = pd.read_pickle('data/2018_at.pickle.gzip')
-        self.at = pd.read_parquet('data/all_2018-09-25_ID.1931994.parquet')
+        self.at = pd.read_parquet('data/all_2018-09-26_ID.1932054.parquet')
         self.at_head = self.at.head()
         print('*** loaded the data with length of', len(self.at))
 
