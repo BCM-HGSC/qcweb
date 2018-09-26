@@ -3,50 +3,49 @@ import pandas as pd
 import pyarrow
 
 
-RUN_FINISHED_DATE = 'Run Finished Date'
+RUN_FINISHED_DATE = 'RUN_FINISHED_DATE'
 
-COLS_KEEP = ['Lane Barcode',
-             'Metaproject',
-             'Midpool Library',
-             'Library',
-             'Run Finished Date',
-             'Total MB',
-             'Prefix',
-             'Group']
+COLS_KEEP = ['LANE_BARCODE',
+             'METAPROJECT',
+             'MIDPOOL_LIBRARY',
+             'LIBRARY',
+             'RUN_FINISHED_DATE',
+             'TOTAL_MB',
+             'PREFIX',
+             'GROUP']
 
-BASE_COLUMNS = ['Lane Barcode',
-                'Run Name',
-                'Metaproject',
-                'Midpool Library',
-                'Library',
-                'Run Finished Date',
-                'Collaborator Sample ID',
-                'Internal Processing Sample ID',
-                'Machine Name',
-                'Total MB',
-                'Ref Genome Path',
-                'Result Path']
+BASE_COLUMNS = ['LANE_BARCODE',
+                'RUN_NAME',
+                'METAPROJECT',
+                'MIDPOOL_LIBRARY',
+                'LIBRARY',
+                'RUN_FINISHED_DATE',
+                'COLLABORATOR_SAMPLE_ID',
+                'INTERNAL_PROCESSING_SAMPLE_ID',
+                'MACHINE_NAME',
+                'TOTAL_MB',
+                'REF_GENOME_PATH',
+                'RESULT_PATH']
 
-STAT_COLUMNS = ['Unique Aligned MB',
-                '% Align Read 1',
-                '% Align Read 2',
-                'Average Coverage',
-                'Chimeric rate',
-                'Per 10 Coverage Bases',
-                'Per 20 Coverage Bases',
-                'Q20 Bases',
-                'VerifyBamid Contamination Rate']
+STAT_COLUMNS = ['UNIQUE_ALIGNED_MB',
+                '%_ALIGN_READ_1',
+                '%_ALIGN_READ_2',
+                'AVERAGE_COVERAGE',
+                'CHIMERIC_RATE',
+                'PER_10_COVERAGE_BASES',
+                'PER_20_COVERAGE_BASES',
+                'Q20_BASES',
+                'VERIFYBAMID_CONTAMINATION_RATE']
 
-RUN_DATE_COLUMNS = ['Run Start Date',
-                    'Analysis Start Date',
-                    'Analysis Alignment Stats Finished Date',
-                    'Analysis Finished Date']
+RUN_DATE_COLUMNS = ['RUN_START_DATE',
+                    'ANALYSIS_START_DATE',
+                    'ANALYSIS_ALIGNMENT_STATS_FINISHED_DATE',
+                    'ANALYSIS_FINISHED_DATE']
 
-ADD1_COLUMNS = ['Prefix',
+ADD1_COLUMNS = ['PREFIX',
                 'Group']
 
-ADD2_COLUMNS = ['Application',
-                'Numeric Total MB']
+ADD2_COLUMNS = ['Application']
 
 CURRENT_COLUMNS_KEEP = BASE_COLUMNS + ADD1_COLUMNS + ADD2_COLUMNS
 
