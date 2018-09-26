@@ -6,7 +6,7 @@ import pyarrow
 RUN_FINISHED_DATE = 'RUN_FINISHED_DATE'
 
 COLS_KEEP = ['LANE_BARCODE',
-             'METAPROJECT',
+             'METAPROJECT_NAME',
              'MIDPOOL_LIBRARY',
              'LIBRARY',
              'RUN_FINISHED_DATE',
@@ -14,17 +14,18 @@ COLS_KEEP = ['LANE_BARCODE',
              'PREFIX',
              'GROUP']
 
+
 BASE_COLUMNS = ['LANE_BARCODE',
                 'RUN_NAME',
                 'METAPROJECT',
                 'MIDPOOL_LIBRARY',
                 'LIBRARY',
                 'RUN_FINISHED_DATE',
-                'COLLABORATOR_SAMPLE_ID',
-                'INTERNAL_PROCESSING_SAMPLE_ID',
+                'SAMPLE_EXTERNAL_ID',
+                 #'INTERNAL_PROCESSING_SAMPLE_ID',
                 'MACHINE_NAME',
                 'TOTAL_MB',
-                'REF_GENOME_PATH',
+                'REFERENCE_GENOME_ID',
                 'RESULT_PATH']
 
 STAT_COLUMNS = ['UNIQUE_ALIGNED_MB',
@@ -42,8 +43,7 @@ RUN_DATE_COLUMNS = ['RUN_START_DATE',
                     'ANALYSIS_ALIGNMENT_STATS_FINISHED_DATE',
                     'ANALYSIS_FINISHED_DATE']
 
-ADD1_COLUMNS = ['PREFIX',
-                'Group']
+ADD1_COLUMNS = ['Group']
 
 ADD2_COLUMNS = ['Application']
 
