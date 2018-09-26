@@ -17,8 +17,10 @@ from wtforms.validators import DataRequired
 
 # After another blank line, import local libraries.
 from .data import CURRENT_COLUMNS_KEEP
-from .selection import head, sub_demo, query_ses, limit_rows
-from .plotting import plot_demo
+from .selection import (head, sub_demo,
+                        home_grp, home_appl,
+                        query_ses, limit_rows)
+from .plotting import plot_demo, grp_bar_plot, appl_pie_plot
 from .form_fields import QueryForm
 
 # flask knows where to look for static & template files
@@ -31,6 +33,26 @@ app.config['SECRET_KEY'] = 'mysecretkey'
 def home():
     print('hello from /home')
     return render_template('home.html', title='Home')
+
+
+@app.route("/home/plot1")
+def home_p1_png():
+    df_grp = home_grp()
+    print(df_grp)
+    image_data, image_type = grp_bar_plot(df_grp)
+    resp = make_response(image_data)
+    resp.content_type = image_type
+    return resp
+
+
+@app.route("/home/plot2")
+def home_p2_png():
+    df_appl = home_appl()
+    print(df_appl)
+    image_data, image_type = appl_pie_plot(df_appl)
+    resp = make_response(image_data)
+    resp.content_type = image_type
+    return resp
 
 
 @app.route("/table")

@@ -42,6 +42,16 @@ def sub_demo():
     return at_sub
 
 
+def home_grp():
+    """A function that returns a data frame"""
+    return my_data.grp
+
+
+def home_appl():
+    """A function that returns a data frame"""
+    return my_data.appl
+
+
 def by_date_range(result_df, start, end):
     df = result_df
     # convert to datetime64[ns]

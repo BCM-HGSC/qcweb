@@ -57,6 +57,8 @@ class MyData:
         # self.at = pd.read_pickle('data/2018_at.pickle.gzip')
         self.at = pd.read_pickle('data/at.pickle.gzip')
         self.at_head = self.at.head()
+        self.grp = pd.read_pickle('data/grp.pickle.gzip')
+        self.appl = pd.read_pickle('data/appl.pickle.gzip')
         print('*** loaded the data with length of', len(self.at))
 
 
