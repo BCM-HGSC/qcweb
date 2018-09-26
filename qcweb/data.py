@@ -28,8 +28,8 @@ BASE_COLUMNS = ['LANE_BARCODE',
                 'RESULT_PATH']
 
 STAT_COLUMNS = ['UNIQUE_ALIGNED_MB',
-                '%_ALIGN_READ_1',
-                '%_ALIGN_READ_2',
+                'R1_PERCENT_ALIGN_PF',
+                'R2_PERCENT_ALIGN_PF',
                 'AVERAGE_COVERAGE',
                 'CHIMERIC_RATE',
                 'PER_10_COVERAGE_BASES',
