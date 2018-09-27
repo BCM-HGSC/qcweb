@@ -4,7 +4,7 @@
       <article class="media content-section">
         <div class="media-body">
           <p>Distribution by Group</p>
-          <img src="/home/plot1" alt="graph">
+          <img src="{{ url_for('home_p1_png') }}" alt="graph">
         </div>
       </article>
 {% endblock content %}
@@ -14,7 +14,7 @@
       <article class="media content-section">
         <div class="media-body">
           <p>Distribution by Application</p>
-          <img src="/home/plot2" alt="graph">
+          <img src="{{ url_for('home_p2_png') }}" alt="graph">
         </div>
       </article>
 {% endblock sidebar %}
