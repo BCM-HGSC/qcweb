@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
 {% block content %}
   <h1>Plot Page</h1>
-  <img src="/plots/p1.png" alt="graph">
+  <img src="{{ url_for('p1_png') }}" alt="graph">
 {% endblock content %}
