@@ -4,7 +4,7 @@
   <body>
     <h1>Query Form</h1>
     {% for message in form.qcreport.errors %}
-      <div class="alert error">{{ message }}</div>
+      <div class="alert">{{ message }}</div>
     {% endfor %}
     {% for message in form.platform.errors %}
       <div class="alert">{{ message }}</div>
