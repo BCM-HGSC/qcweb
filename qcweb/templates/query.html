@@ -3,10 +3,34 @@
 {% block content %}
   <body>
     <h1>Query Form</h1>
+    {% for message in form.qcreport.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.platform.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.group.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.appl.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.start.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.end.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.agg.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
       <div class="content-section">
-          <form method="POST">
+          <form method="POST" action="" target="_blank">
           {{ form.hidden_tag() }}
           {{ form.qcreport.label }}{{ form.qcreport }}
+            <small class="text-muted ml-2">
+              must be 2-20 characters long...
+            </small>
           <br>
           {{ form.platform.label }}{{ form.platform }}
           <br>
@@ -16,8 +40,14 @@
           <br>
           <!-- QC group care about 'Run Finished Date' -->
           {{ form.start.label }}{{ form.start }}
+              <small class="text-muted ml-2">
+                must be %Y-%m-%dT%H:%M:%S
+              </small>
           <br>
           {{ form.end.label }}{{ form.end }}
+              <small class="text-muted ml-2">
+                must be %Y-%m-%dT%H:%M:%S
+              </small>
           <br>
           {{ form.agg.label }}{{ form.agg }}
           <br>
@@ -25,8 +55,7 @@
           <br>
           {{ form.display_table.label }}{{ form.display_table }}
           {{ form.submit(class="btn btn-outline-info") }}
-        </form>
+          </form>
       </div>
-    </nav>
   </body>
 {% endblock content %}

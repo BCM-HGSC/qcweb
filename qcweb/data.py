@@ -55,7 +55,8 @@ class MyData:
     def __init__(self):
         super(MyData, self).__init__()
         # self.at = pd.read_pickle('data/2018_at.pickle.gzip')
-        self.at = pd.read_pickle('data/at.pickle.gzip')
+        # self.at = pd.read_pickle('data/at.pickle.gzip')
+        self.at = pd.read_parquet('data/at.100pct.parquet')
         self.at_head = self.at.head()
         self.grp = pd.read_pickle('data/grp.pickle.gzip')
         self.appl = pd.read_pickle('data/appl.pickle.gzip')
