@@ -63,7 +63,7 @@ class MyData:
 
 def n_file():
     list_f = glob.glob('data/'+"*.parquet")
-    newest = max(list_f, key=os.path.getctime)
+    newest = max(list_f)
     return newest
 
 
