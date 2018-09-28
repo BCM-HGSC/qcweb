@@ -1,4 +1,6 @@
 """Responsible for loading and holding the metadata that we are showing."""
+import glob
+import os
 import pandas as pd
 import pyarrow
 
@@ -53,9 +55,17 @@ CURRENT_COLUMNS_KEEP = BASE_COLUMNS + ADD1_COLUMNS + ADD2_COLUMNS
 class MyData:
     def __init__(self):
         super(MyData, self).__init__()
-        self.at = pd.read_parquet('data/all_2018-09-28_ID.1933796.parquet')
+        print (n_file())
+        self.at = pd.read_parquet(n_file())
         self.at_head = self.at.head()
         print('*** loaded the data with length of', len(self.at))
+
+
+def n_file():
+    list_f = glob.glob('data/'+"*.parquet")
+    newest = max(list_f, key=os.path.getctime)
+    return newest
+
 
 
 my_data = MyData()
