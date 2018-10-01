@@ -20,16 +20,19 @@ class QueryForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=20)])
     platform = SelectField(u'Platform: ',
                     validators=[InputRequired("Please choose a Platform.")],
-                    choices=[('NovaSeq', 'NovaSeq'),
+                    choices=[('Any', 'Any'),
+                             ('NovaSeq', 'NovaSeq'),
                              ('HiSeq X', 'HiSeq X'),
                              ('MiSeq', 'MiSeq'),
                              ('HiSeq 2000', 'HiSeq 2000'),
                              ('HiSeq 2500', 'HiSeq 2500'),
-                             ('GA', 'GA')])
+                             ('GA', 'GA')],
+                             default='Any')
 
     group = SelectField(u'Group: ',
                     validators=[InputRequired("Please choose a Group.")],
-                    choices=[('ADSP', 'ADSP'),
+                    choices=[('Any', 'Any'),
+                             ('ADSP', 'ADSP'),
                              ('BAC', 'BAC'),
                              ('CCDG', 'CCDG'),
                              ('CHARGE', 'CHARGE'),
@@ -48,11 +51,13 @@ class QueryForm(FlaskForm):
                              ('TEDDY', 'TEDDY'),
                              ('TG', 'TG'),
                              ('TOPMed', 'TOPMed'),
-                             ('Virology & Microbiology', 'Virology & Microbiology')])
+                             ('Virology & Microbiology', 'Virology & Microbiology')],
+                    default='Any')
 
     appl = SelectField(u'Application: ',
                     validators=[InputRequired("Please choose a Application.")],
-                    choices=[('Amplicon Pool', 'Amplicon Pool'),
+                    choices=[('Any', 'Any'),
+                             ('Amplicon Pool', 'Amplicon Pool'),
                              ('CHIP-Seq', 'CHIP-Seq'),
                              ('R & D', 'R & D'),
                              ('RNA Req', 'RNA Seq'),
@@ -60,7 +65,8 @@ class QueryForm(FlaskForm):
                              ('Regional capture', 'Reginal capture'),
                              ('Whole EXOME', 'Whole EXOME'),
                              ('Whole Genome', 'Whole Gemone'),
-                             ('small RNA', 'small RNA')])
+                             ('small RNA', 'small RNA')],
+                    default='Any')
 
     # QC group care about Run Finished Date
     start = DateTimeField(u'Start: ',
@@ -75,8 +81,10 @@ class QueryForm(FlaskForm):
     # for pandas groupby filter
     agg = SelectField(u'Aggregation: ',
                     validators=[InputRequired("Please choose an Aggregation.")],
-                    choices=[('by_group', 'By Group'),
-                         ('by_appl', 'By Application')])
+                    choices=[('do_not_agg', 'Do Not Aggregate'),
+                             ('by_group', 'By Group'),
+                             ('by_appl', 'By Application')],
+                    default='do_not_agg')
 
     # graphs QC group presents and routinely uses
     # plot_choice = SelectField(u'Plot Choice:',
@@ -86,8 +94,8 @@ class QueryForm(FlaskForm):
     #
     # # display_table  = BooleanField("Display Table: ")
     display_table = RadioField('Display Table:',
-                    validators=[InputRequired("Please choose Yes or No.")],
-                    choices=[('yes','Yes'), ('no','No')],
-                    default='yes')
+                            validators=[InputRequired("Please choose Yes or No.")],
+                            choices=[('Yes','Yes'), ('No','No')],
+                            default='Yes')
 
     submit = SubmitField('Submit')
