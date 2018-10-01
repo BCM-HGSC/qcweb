@@ -60,8 +60,11 @@ def by_date_range(result_df, start, end):
 
 
 def by_platform(result_df, platform):
-    dfs = result_df
-    if platform == 'HiSeq X':
+    df_pf = dfs = result_df
+    platform = platform
+    if platform == 'Any':
+        df_pf = dfs
+    elif platform == 'HiSeq X':
         df_pf = dfs[dfs['Machine Name'].str[:3] == 'E00']
     elif platform == 'HiSeq 2000':
         df_pf = dfs[dfs['Machine Name'].str[:3] == '700']
@@ -104,14 +107,20 @@ CURRENT_GROUP_NAMES = '''
 
 
 def by_group(result_df, group):
-    dfs = result_df
+    df_grp = dfs = result_df
     group = group
-    df_grp = dfs[dfs['Group'] == group]
+    if group == 'Any':
+        df_grp = dfs
+    else:
+        df_grp = dfs[dfs['Group'] == group]
     return df_grp
 
 
 def by_appl(result_df, appl):
-    dfs = result_df
+    df_appl = dfs = result_df
     appl = appl
-    df_appl = dfs[dfs['Application'] == appl]
+    if appl == 'Any':
+        df_appl = dfs
+    else:
+        df_appl = dfs[dfs['Application'] == appl]
     return df_appl
