@@ -14,6 +14,9 @@
       <li>Plot Choice: {{ plot_choice }}</li>
       <li>Display Table: {{ display_table }}</li>
     </ul>
+    <!-- Auto width -->
+    <button class="btn"><i class="fa fa-download"></i> Download</button>
+    <br>
     <br>
     {{ data.to_html(justify='center') | safe }}
 {% endblock content %}
