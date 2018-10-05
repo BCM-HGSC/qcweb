@@ -27,7 +27,7 @@ BASE_COLUMNS = ['LANE_BARCODE',
                 'INTERNAL_PROCESSING_SAMPLE_ID',
                 'MACHINE_NAME',
                 'TOTAL_MB',
-                'REFERENCE_GENOME_ID',
+                'REFERENCE_PATH_USED_ANALYSIS',
                 'RESULT_PATH']
 
 STAT_COLUMNS = ['UNIQUE_ALIGNED_MB',
