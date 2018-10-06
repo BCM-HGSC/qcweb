@@ -79,10 +79,10 @@ CSV_TYPE = 'text/csv'
 @app.route("/table-download")
 @app.route("/table-download/<start>/<end>/<platform>/<group>/<appl>")
 def table_download(
-        qcreport=None, platform=None,
+        platform=None,
         group=None, appl=None,
         start=None, end=None,
-        agg=None
+        # agg=None
     ):
     data = query_ses(platform, group, appl, start, end)
     csv_data = build_csv_data(data)
