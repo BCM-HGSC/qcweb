@@ -65,13 +65,20 @@ def table(qcreport=None, platform=None,
           start=None, end=None,
           agg=None, display_table=None):
     data = query_ses(platform, group, appl, start, end)
+    dl_url = url_for(
+        'table_download',
+        platform=platform,
+        group=group, appl=appl,
+        start=start, end=end
+    )
     return render_template('table.html', title='Table',
                            data=limit_rows(data)[CURRENT_COLUMNS_KEEP],
                            qcreport=qcreport, platform=platform,
                            group=group, appl=appl,
                            start=start, end=end,
                            agg=agg, display_table=display_table,
-                           num_rows=len(data))
+                           num_rows=len(data),
+                           dl_url=dl_url)
 
 
 CSV_TYPE = 'text/csv'

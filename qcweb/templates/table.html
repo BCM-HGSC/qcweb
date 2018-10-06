@@ -15,7 +15,7 @@
       <li>Display Table: {{ display_table }}</li>
     </ul>
     <!-- Auto width -->
-    <a href="{{ url_for('table_download',  download='csv_data') }}"><button>Download (CSV)</button></a>
+    <a href="{{ dl_url }}"><button>Download (CSV)</button></a>
     <br>
     <br>
     {{ data.to_html(justify='center') | safe }}
