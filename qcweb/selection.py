@@ -30,6 +30,12 @@ def query_ses(platform, group, appl, start, end):
     return result_df
 
 
+# write dataframe to a csv file format
+def build_csv_data(data_frame):
+    csv_data = data_frame.to_csv(path_or_buf=None, index=True, encoding='utf-8')
+    return csv_data
+
+
 def head():
     """Demonstration of a function that returns a data frame"""
     return my_data.at_head

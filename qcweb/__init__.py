@@ -18,9 +18,9 @@ from wtforms.validators import DataRequired
 
 # After another blank line, import local libraries.
 from .data import CURRENT_COLUMNS_KEEP
-from .selection import (head, sub_demo,
+from .selection import (limit_rows, head, sub_demo,
                         home_grp, home_appl,
-                        query_ses, limit_rows)
+                        query_ses, build_csv_data)
 from .plotting import plot_demo, grp_bar_plot, appl_pie_plot
 from .form_fields import QueryForm
 
@@ -65,13 +65,37 @@ def table(qcreport=None, platform=None,
           start=None, end=None,
           agg=None, display_table=None):
     data = query_ses(platform, group, appl, start, end)
+    dl_url = url_for(
+        'table_download',
+        platform=platform,
+        group=group, appl=appl,
+        start=start, end=end
+    )
     return render_template('table.html', title='Table',
                            data=limit_rows(data)[CURRENT_COLUMNS_KEEP],
                            qcreport=qcreport, platform=platform,
                            group=group, appl=appl,
                            start=start, end=end,
                            agg=agg, display_table=display_table,
-                           num_rows=len(data))
+                           num_rows=len(data),
+                           dl_url=dl_url)
+
+
+CSV_TYPE = 'text/csv'
+
+@app.route("/table-download")
+@app.route("/table-download/<start>/<end>/<platform>/<group>/<appl>")
+def table_download(
+        platform=None,
+        group=None, appl=None,
+        start=None, end=None,
+        # agg=None
+    ):
+    data = query_ses(platform, group, appl, start, end)
+    csv_data = build_csv_data(data)
+    resp = make_response(csv_data)
+    resp.content_type = CSV_TYPE
+    return resp
 
 
 @app.route("/query", methods=['GET', 'POST'])

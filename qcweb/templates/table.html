@@ -14,6 +14,9 @@
       <li>Plot Choice: {{ plot_choice }}</li>
       <li>Display Table: {{ display_table }}</li>
     </ul>
+    <!-- Auto width -->
+    <a href="{{ dl_url }}" download="qcweb_query.csv"><button>Download (CSV)</button></a>
+    <br>
     <br>
     {{ data.to_html(justify='center') | safe }}
 {% endblock content %}
