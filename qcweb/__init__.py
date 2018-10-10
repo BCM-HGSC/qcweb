@@ -83,6 +83,7 @@ def table(qcreport=None, platform=None,
 
 CSV_TYPE = 'text/csv'
 
+
 @app.route("/table-download")
 @app.route("/table-download/<start>/<end>/<platform>/<group>/<appl>")
 def table_download(
