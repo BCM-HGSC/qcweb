@@ -63,7 +63,8 @@ def by_date_range(result_df, start, end):
     df = result_df
     # convert to datetime64[ns]
     df['Run Finished Date'] = df['Run Finished Date'].astype('datetime64[ns]')
-    return df[(df[RUN_FINISHED_DATE] >= start) & (df[RUN_FINISHED_DATE] <= end)]
+    return df[(df[RUN_FINISHED_DATE] >= start)
+              & (df[RUN_FINISHED_DATE] <= end)]
 
 
 def by_platform(result_df, platform):
@@ -78,7 +79,8 @@ def by_platform(result_df, platform):
     elif platform == 'HiSeq 2500':
         df_pf = dfs[dfs['Machine Name'].str[:3] == 'D00']
     elif platform == 'MiSeq':
-        df_pf = dfs[(dfs['Machine Name'].str[-3:] == '888') | (dfs['Machine Name'].str[-3:] == '178')]
+        df_pf = dfs[(dfs['Machine Name'].str[-3:] == '888')
+                    | (dfs['Machine Name'].str[-3:] == '178')]
     elif platform == 'NovaSeq':
         df_pf = dfs[dfs['Machine Name'].str[:3] == 'A00']
     elif platform == 'GA':
