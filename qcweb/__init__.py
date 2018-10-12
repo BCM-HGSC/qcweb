@@ -84,6 +84,7 @@ def table(qcreport=None, platform=None,
 
 CSV_TYPE = 'text/csv'
 
+
 @app.route("/table-download")
 @app.route("/table-download/<start>/<end>/<platform>/<group>/<appl>")
 def table_download(
@@ -126,9 +127,11 @@ def query():
             if want_table:
                 print(start)
                 print(type(start))
-                return redirect(url_for("table", qcreport=qcreport, platform=platform,
+                return redirect(url_for("table",
+                                        qcreport=qcreport, platform=platform,
                                         group=group, appl=appl,
-                                        start=start.isoformat(), end=end.isoformat(),
+                                        start=start.isoformat(),
+                                        end=end.isoformat(),
                                         agg=agg, display_table=display_table))
             else:
                 return redirect(url_for("plot"))

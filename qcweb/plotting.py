@@ -16,15 +16,17 @@ def plot_demo(data_frame):
     # matplot/ seaborn style setting
     sns.set_style('whitegrid')
     mpl.rcParams['patch.force_edgecolor'] = True
-    sns.set(rc={'figure.figsize':(5.0, 5.0)})
+    sns.set(rc={'figure.figsize': (5.0, 5.0)})
 
     # seaborn countplot
     p1 = sns.countplot(x='Group', data=data_frame, palette='coolwarm')
 
     # rotate xticklabels to prevent the labels being overlapped
+    # use a semicolon to suppress the output of a final function
     p1.set_xticklabels(p1.get_xticklabels(), rotation=90);
 
-    # adjust subplot params to avoid axis labels,titles or ticklabels being clipped
+    # adjust subplot params
+    # to avoid axis labels,titles or ticklabels being clipped
     p1.figure.tight_layout()
     p1.figure.savefig(img, format='png')
 
@@ -41,17 +43,18 @@ def grp_bar_plot(data_frame):
 
     # seaborn style setting
     sns.set_style('whitegrid')
-    sns.set(rc={'figure.figsize':(7.0, 4.5)})
+    sns.set(rc={'figure.figsize': (7.0, 4.5)})
 
     # parameters for grp
     grp = data_frame['grp']
     grp_sizes = data_frame['grp_sizes']
 
     # seaborn barplot
-    p1 = sns.barplot(x='grp',y='grp_sizes',data=data_frame, palette='coolwarm')
+    p1 = sns.barplot(x='grp', y='grp_sizes',
+                     data=data_frame, palette='coolwarm')
     p1.set_xlabel('Group')
-    p1.set_ylabel('Total TB');
-    p1.set_xticklabels(p1.get_xticklabels(),rotation=90)
+    p1.set_ylabel('Total TB')
+    p1.set_xticklabels(p1.get_xticklabels(), rotation=90);
 
     # save plot
     p1.figure.tight_layout()
@@ -64,13 +67,14 @@ def grp_bar_plot(data_frame):
     image_type = "image/png"
     return image_data, image_type
 
+
 def appl_pie_plot(data_frame):
     img = io.BytesIO()
 
     # matplot/ seaborn style setting
     sns.set_style('whitegrid')
     mpl.rcParams['patch.force_edgecolor'] = True
-    sns.set(rc={'figure.figsize':(2.5, 2.5)})
+    sns.set(rc={'figure.figsize': (2.5, 2.5)})
 
     # returns a list of values
     appl = data_frame['appl'].tolist()
@@ -85,7 +89,7 @@ def appl_pie_plot(data_frame):
 
     fig1, ax1 = plt.subplots()
     ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
-            labeldistance=1.2, wedgeprops = {'linewidth': 0.8, 'edgecolor': 'w'},
+            labeldistance=1.2, wedgeprops={'linewidth': 0.8, 'edgecolor': 'w'},
             shadow=True, startangle=90)
     ax1.axis('equal')
 
