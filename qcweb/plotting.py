@@ -22,8 +22,7 @@ def plot_demo(data_frame):
     p1 = sns.countplot(x='Group', data=data_frame, palette='coolwarm')
 
     # rotate xticklabels to prevent the labels being overlapped
-    # use a semicolon to suppress the output of a final function
-    p1.set_xticklabels(p1.get_xticklabels(), rotation=90);
+    p1.set_xticklabels(p1.get_xticklabels(), rotation=90)
 
     # adjust subplot params
     # to avoid axis labels,titles or ticklabels being clipped
@@ -54,7 +53,7 @@ def grp_bar_plot(data_frame):
                      data=data_frame, palette='coolwarm')
     p1.set_xlabel('Group')
     p1.set_ylabel('Total TB')
-    p1.set_xticklabels(p1.get_xticklabels(), rotation=90);
+    p1.set_xticklabels(p1.get_xticklabels(), rotation=90)
 
     # save plot
     p1.figure.tight_layout()
