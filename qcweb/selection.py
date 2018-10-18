@@ -16,8 +16,8 @@ def limit_rows(data, max_rows=20):
     return result
 
 
-def query_ses(platform, group, appl, start, end):
-    filter_by_date = start and end
+def query_ses(platform, group, appl, start_str, end_str):
+    filter_by_date = start_str and end_str
     is_filtering = platform or group or appl or filter_by_date
     result_df = my_data.at
     if platform:
@@ -27,6 +27,7 @@ def query_ses(platform, group, appl, start, end):
     if appl:
         result_df = by_appl(result_df, appl)
     if filter_by_date:
+        start, end = make_range(start_str, end_str)
         result_df = by_date_range(result_df, start, end)
     return result_df
 
