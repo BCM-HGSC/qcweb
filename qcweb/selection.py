@@ -69,6 +69,13 @@ def by_date_range(result_df, start, end):
               & (df[RUN_FINISHED_DATE] <= end)]
 
 
+# start_str, end_str are user input
+def make_range(start_str, end_str):
+    start = pd.to_datetime(start_str)
+    end = (pd.to_datetime(end_str) if end_str else start) + timedelta(days=1)
+    return start, end
+
+
 def by_platform(result_df, platform):
     df_pf = dfs = result_df
     platform = platform
