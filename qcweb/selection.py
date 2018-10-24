@@ -70,10 +70,16 @@ def by_date_range(result_df, start, end):
               & (df[RUN_FINISHED_DATE] <= end)]
 
 
+ONE_DAY = datetime.timedelta(days=1)
+MIDNIGHT = datetime.time.min
+
+
 # start_str, end_str are user input
 def make_range(start_str, end_str):
     start = pd.to_datetime(start_str)
-    end = (pd.to_datetime(end_str) if end_str else start) + timedelta(days=1)
+    end = (pd.to_datetime(end_str) if end_str else start)
+    if end.time() == MIDNIGHT:
+        end += ONE_DAY
     return start, end
 
 
