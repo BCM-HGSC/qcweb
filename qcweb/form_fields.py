@@ -85,20 +85,17 @@ class QueryForm(FlaskForm):
     )
     time_start = DateTimeField(
         u'Time Start: ',
-        validators=[InputRequired("Please add a Start Time.")],
-        format='T%H:%M:%S'
+        # format='T%H:%M:%S'
     )
 
     date_end = DateTimeField(
         u'Date End: ',
         validators=[InputRequired("Please add an End Date.")],
-        # format='%Y-%m-%dT%H:%M:%S'
         format='%Y-%m-%d'
     )
     time_end = DateTimeField(
         u'Time End: ',
-        validators=[InputRequired("Please add an End Time.")],
-        format='T%H:%M:%S'
+        # format='T%H:%M:%S'
     )
     # start = IntegerField()
     # end = IntegerField()
