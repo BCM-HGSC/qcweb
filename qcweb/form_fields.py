@@ -78,18 +78,27 @@ class QueryForm(FlaskForm):
     )
 
     # QC group care about Run Finished Date
-    start = DateTimeField(
-        u'Start: ',
+    date_start = DateTimeField(
+        u'Date Start: ',
         validators=[InputRequired("Please add a Start Date.")],
-        # format='%Y-%m-%dT%H:%M:%S'
         format='%Y-%m-%d'
     )
+    time_start = DateTimeField(
+        u'Time Start: ',
+        validators=[InputRequired("Please add a Start Time.")],
+        format='T%H:%M:%S'
+    )
 
-    end = DateTimeField(
-        u'End: ',
+    date_end = DateTimeField(
+        u'Date End: ',
         validators=[InputRequired("Please add an End Date.")],
         # format='%Y-%m-%dT%H:%M:%S'
         format='%Y-%m-%d'
+    )
+    time_end = DateTimeField(
+        u'Time End: ',
+        validators=[InputRequired("Please add an End Time.")],
+        format='T%H:%M:%S'
     )
     # start = IntegerField()
     # end = IntegerField()
