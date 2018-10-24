@@ -117,8 +117,12 @@ def query():
             platform = form.platform.data
             group = form.group.data
             appl = form.appl.data
-            start = form.start.data
-            end = form.end.data
+            date_start = form.date_start.data
+            time_start = form.time_start.data
+            start = ''.join([form.date_start.data, form.time_start.data])
+            date_end = form.date_end.data
+            time_end = form.time_end.data
+            end = ''.join([form.date_end.data, form.time_end.data])
             agg = form.agg.data
             # plot_choice = form.plot_choice.data
             display_table = form.display_table.data
