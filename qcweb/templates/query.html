@@ -15,10 +15,16 @@
     {% for message in form.appl.errors %}
       <div class="alert">{{ message }}</div>
     {% endfor %}
-    {% for message in form.start.errors %}
+    {% for message in form.date_start.errors %}
       <div class="alert">{{ message }}</div>
     {% endfor %}
-    {% for message in form.end.errors %}
+    {% for message in form.time_start.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.date_end.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.time_end.errors %}
       <div class="alert">{{ message }}</div>
     {% endfor %}
     {% for message in form.agg.errors %}
@@ -38,14 +44,24 @@
           {{ form.appl.label }}{{ form.appl }}
           <br>
           <!-- QC group care about 'Run Finished Date' -->
-          {{ form.start.label }}{{ form.start }}
+          {{ form.date_start.label }}{{ form.date_start }}
               <small class="text-muted ml-2">
-                can be %Y-%m-%d or %Y-%m-%dT%H:%M:%S
+                shoud be %Y-%m-%d
               </small>
           <br>
-          {{ form.end.label }}{{ form.end }}
+          {{ form.time_start.label }}{{ form.time_start }}
               <small class="text-muted ml-2">
-                can be %Y-%m-%d or %Y-%m-%dT%H:%M:%S
+                can be T%H:%M:%S or blank
+              </small>
+          <br>
+          {{ form.date_end.label }}{{ form.date_end }}
+              <small class="text-muted ml-2">
+                should be %Y-%m-%d
+              </small>
+          <br>
+          {{ form.time_end.label }}{{ form.time_end }}
+              <small class="text-muted ml-2">
+                can be T%H:%M:%S or blank
               </small>
           <br>
           {{ form.agg.label }}{{ form.agg }}
