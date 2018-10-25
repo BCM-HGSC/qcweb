@@ -110,6 +110,7 @@ def query():
         # if the form is valid on submission
         is_valid = form.validate_on_submit()
         print('validation result', is_valid)
+        print(form.errors)
         if is_valid:
             print('It validated')
             flash(f'Query succussful {form.qcreport.data}!', 'success')
