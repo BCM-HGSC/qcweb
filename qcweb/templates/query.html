@@ -18,7 +18,13 @@
     {% for message in form.date_start.errors %}
       <div class="alert">{{ message }}</div>
     {% endfor %}
+    {% for message in form.time_start.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
     {% for message in form.date_end.errors %}
+      <div class="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in form.time_end.errors %}
       <div class="alert">{{ message }}</div>
     {% endfor %}
     {% for message in form.agg.errors %}
