@@ -121,10 +121,14 @@ def query():
             appl = form.appl.data
             date_start = form.date_start.data
             time_start = form.time_start.data
-            start = ''.join([date_start, time_start])
+            start = datetime.combine(date_start, time_start)
+            print('start: ', date_start, time_start, start, sep='\n')
+            print(type(date_start), type(time_start), type(start))
             date_end = form.date_end.data
             time_end = form.time_end.data
-            end = ''.join([date_end, time_end])
+            end = datetime.combine(date_end, time_end)
+            print('end: ', date_end, time_end, end, sep='\n')
+            print(type(date_end), type(time_end), type(end))
             agg = form.agg.data
             # plot_choice = form.plot_choice.data
             display_table = form.display_table.data
