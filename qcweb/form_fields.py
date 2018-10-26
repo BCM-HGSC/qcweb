@@ -88,8 +88,8 @@ class QueryForm(FlaskForm):
     time_start = TimeField(
         u'Time Start: ',
         validators=[Optional()],
-        default=datetime.datetime.strptime('00:00:00', '%H:%M:%S'),
-        format='%H:%M:%S'
+        format='%H:%M:%S',
+        default=datetime.datetime.strptime('00:00:00', '%H:%M:%S')
     )
 
     date_end = DateField(
@@ -100,8 +100,8 @@ class QueryForm(FlaskForm):
     time_end = TimeField(
         u'Time End: ',
         validators=[Optional()],
-        default=datetime.datetime.strptime('00:00:00', '%H:%M:%S'),
-        format='%H:%M:%S'
+        format='%H:%M:%S',
+        default=datetime.datetime.strptime('00:00:00', '%H:%M:%S')
     )
     # start = IntegerField()
     # end = IntegerField()
