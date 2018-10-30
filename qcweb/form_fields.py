@@ -1,8 +1,7 @@
 import datetime
 from flask import Flask, render_template, session, redirect, url_for
 from flask_wtf import FlaskForm
-from wtforms import (StringField, BooleanField,
-                     DateField, DateTimeField,
+from wtforms import (StringField, BooleanField, DateField,
                      RadioField, SelectField, TextField,
                      TextAreaField, SubmitField, IntegerField)
 from wtforms.validators import (DataRequired, InputRequired,
