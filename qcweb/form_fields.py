@@ -5,12 +5,13 @@ from wtforms import (StringField, BooleanField, DateField,
                      RadioField, SelectField, TextField,
                      TextAreaField, SubmitField, IntegerField)
 from wtforms.validators import (DataRequired, InputRequired,
-                                Optional, Length)
-from wtforms_components import TimeField
+                                Optional, Length, Regexp)
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecretkey'
+
+TIME_24HOUR_REGEX = '([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]'
 
 
 # create a WTForm Class
@@ -85,11 +86,10 @@ class QueryForm(FlaskForm):
         validators=[InputRequired("Please add a Start Date.")],
         format='%Y-%m-%d'
     )
-    time_start = TimeField(
+    time_start = StringField(
         u'Time Start: ',
-        validators=[Optional()],
-        format='%H:%M:%S',
-        default=datetime.time()
+        validators=[Regexp(TIME_24HOUR_REGEX, message='24-hour HH:MM:SS')],
+        default='00:00:00'
     )
 
     date_end = DateField(
@@ -97,11 +97,10 @@ class QueryForm(FlaskForm):
         validators=[InputRequired("Please add an End Date.")],
         format='%Y-%m-%d'
     )
-    time_end = TimeField(
+    time_end = StringField(
         u'Time End: ',
-        validators=[Optional()],
-        format='%H:%M:%S',
-        default=datetime.time()
+        validators=[Regexp(TIME_24HOUR_REGEX, message='24-hour HH:MM:SS')],
+        default='00:00:00'
     )
     # start = IntegerField()
     # end = IntegerField()

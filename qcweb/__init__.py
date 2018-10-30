@@ -120,12 +120,12 @@ def query():
             group = form.group.data
             appl = form.appl.data
             date_start = form.date_start.data
-            time_start = form.time_start.data
+            time_start = parse_24h_time_str(form.time_start.data)
             start = datetime.combine(date_start, time_start)
             print('start: ', date_start, time_start, start, sep='\n')
             print(type(date_start), type(time_start), type(start))
             date_end = form.date_end.data
-            time_end = form.time_end.data
+            time_end = parse_24h_time_str(form.time_end.data)
             end = datetime.combine(date_end, time_end)
             print('end: ', date_end, time_end, end, sep='\n')
             print(type(date_end), type(time_end), type(end))
@@ -150,6 +150,11 @@ def query():
         print('back to query.html')
     return render_template('query.html', title='Query', form=form,
             error=form.errors)
+
+
+def parse_24h_time_str(time_str):
+    """Return `datetime.time`. Input in 24-hour HH:MM:SS format."""
+    return time(*map(int, time_str.split(':')))
 
 
 @app.route("/plot")
