@@ -1,4 +1,5 @@
 # First come standard libraries, in alphabetical order.
+from datetime import date, time, datetime
 
 # After a blank line, import third-party libraries.
 from flask import Flask
@@ -109,6 +110,7 @@ def query():
         # if the form is valid on submission
         is_valid = form.validate_on_submit()
         print('validation result', is_valid)
+        print(form.errors)
         if is_valid:
             print('It validated')
             flash(f'Query succussful {form.qcreport.data}!', 'success')
@@ -117,8 +119,16 @@ def query():
             platform = form.platform.data
             group = form.group.data
             appl = form.appl.data
-            start = form.start.data
-            end = form.end.data
+            date_start = form.date_start.data
+            time_start = parse_24h_time_str(form.time_start.data)
+            start = datetime.combine(date_start, time_start)
+            print('start: ', date_start, time_start, start, sep='\n')
+            print(type(date_start), type(time_start), type(start))
+            date_end = form.date_end.data
+            time_end = parse_24h_time_str(form.time_end.data)
+            end = datetime.combine(date_end, time_end)
+            print('end: ', date_end, time_end, end, sep='\n')
+            print(type(date_end), type(time_end), type(end))
             agg = form.agg.data
             # plot_choice = form.plot_choice.data
             display_table = form.display_table.data
@@ -140,6 +150,11 @@ def query():
         print('back to query.html')
     return render_template('query.html', title='Query', form=form,
             error=form.errors)
+
+
+def parse_24h_time_str(time_str):
+    """Return `datetime.time`. Input in 24-hour HH:MM:SS format."""
+    return time(*map(int, time_str.split(':')))
 
 
 @app.route("/plot")
