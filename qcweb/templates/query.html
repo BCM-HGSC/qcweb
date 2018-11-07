@@ -4,7 +4,9 @@
   <body>
     <h1>Query Form</h1>
     {% for message in form.qcreport.errors %}
-      <div class="alert">{{ message }}</div>
+      <div class="alert" style="color: red; background-color: #f0d6d6; ">
+      {{ message }}
+      </div>
     {% endfor %}
     {% for message in form.platform.errors %}
       <div class="alert">{{ message }}</div>
@@ -16,16 +18,24 @@
       <div class="alert">{{ message }}</div>
     {% endfor %}
     {% for message in form.date_start.errors %}
-      <div class="alert">{{ message }}</div>
+      <div class="alert" style="color: red; background-color: #f0d6d6; ">
+      {{ message }}
+      </div>
     {% endfor %}
     {% for message in form.time_start.errors %}
-      <div class="alert">{{ message }}</div>
+      <div class="alert" style="color: red; background-color: #f0d6d6; ">
+      {{ message }}
+      </div>
     {% endfor %}
     {% for message in form.date_end.errors %}
-      <div class="alert">{{ message }}</div>
+      <div class="alert" style="color: red; background-color: #f0d6d6; ">
+      {{ message }}
+      </div>
     {% endfor %}
     {% for message in form.time_end.errors %}
-      <div class="alert">{{ message }}</div>
+      <div class="alert" style="color: red; background-color: #f0d6d6; ">
+      {{ message }}
+      </div>
     {% endfor %}
     {% for message in form.agg.errors %}
       <div class="alert">{{ message }}</div>
