@@ -4,31 +4,31 @@
   <body>
     <h1>Query Form</h1>
     {% for message in form.qcreport.errors %}
-      <div class="alert alert-danger">{{ message }}</div>
+      <div class="alert alert-info" role="alert">{{ message }}</div>
     {% endfor %}
     {% for message in form.platform.errors %}
-      <div class="alert alert-danger">{{ message }}</div>
+      <div class="alert alert-warning" role="alert">{{ message }}</div>
     {% endfor %}
     {% for message in form.group.errors %}
-      <div class="alert alert-danger">{{ message }}</div>
+      <div class="alert alert-warning" role="alert">{{ message }}</div>
     {% endfor %}
     {% for message in form.appl.errors %}
-      <div class="alert alert-danger">{{ message }}</div>
+      <div class="alert alert-warning" role="alert">{{ message }}</div>
     {% endfor %}
     {% for message in form.date_start.errors %}
-      <div class="alert alert-danger">{{ message }}</div>
+      <div class="alert alert-primary" role="alert">{{ message }}</div>
     {% endfor %}
     {% for message in form.time_start.errors %}
-      <div class="alert alert-danger">{{ message }}</div>
+      <div class="alert alert-danger" role="alert">{{ message }}</div>
     {% endfor %}
     {% for message in form.date_end.errors %}
-      <div class="alert alert-danger">{{ message }}</div>
+      <div class="alert alert-primary" role="alert">{{ message }}</div>
     {% endfor %}
     {% for message in form.time_end.errors %}
-      <div class="alert alert-danger">{{ message }}</div>
+      <div class="alert alert-danger" role="alert">{{ message }}</div>
     {% endfor %}
     {% for message in form.agg.errors %}
-      <div class="alert alert-danger">{{ message }}</div>
+      <div class="alert alert-warning" role="alert">{{ message }}</div>
     {% endfor %}
       <div class="content-section">
           <form method="POST" action="" target="_blank">
