@@ -113,7 +113,7 @@ def query():
         print(form.errors)
         if is_valid:
             print('It validated')
-            flash(f'Query succussful {form.qcreport.data}!', 'success')
+            flash(f'Query succussful {form.qcreport.data}!', category='success')
             # grab the data from the query on the form
             qcreport = form.qcreport.data
             platform = form.platform.data
@@ -146,7 +146,7 @@ def query():
             else:
                 return redirect(url_for("plot"))
         assert not is_valid
-        flash(f'Form not valid {form.qcreport.data}!', 'warning')
+        flash(f'Form not valid {form.qcreport.data}!', category='warning')
         print('back to query.html')
     return render_template('query.html', title='Query', form=form,
             error=form.errors)
