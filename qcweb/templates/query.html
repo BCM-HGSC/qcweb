@@ -4,31 +4,49 @@
   <body>
     <h1>Query Form</h1>
     {% for message in form.qcreport.errors %}
-      <div class="alert alert-info" role="alert">{{ message }}</div>
+      <div class="alert alert-info" role="alert">
+        QC Report: {{ message }}
+      </div>
     {% endfor %}
     {% for message in form.platform.errors %}
-      <div class="alert alert-warning" role="alert">{{ message }}</div>
+      <div class="alert alert-warning" role="alert">
+        Platform: {{ message }}
+      </div>
     {% endfor %}
     {% for message in form.group.errors %}
-      <div class="alert alert-warning" role="alert">{{ message }}</div>
+      <div class="alert alert-warning" role="alert">
+        Group: {{ message }}
+      </div>
     {% endfor %}
     {% for message in form.appl.errors %}
-      <div class="alert alert-warning" role="alert">{{ message }}</div>
+      <div class="alert alert-warning" role="alert">
+        Application: {{ message }}
+      </div>
     {% endfor %}
     {% for message in form.date_start.errors %}
-      <div class="alert alert-danger" role="alert">{{ message }}</div>
+      <div class="alert alert-danger" role="alert">
+          Date Start: {{ message }}
+      </div>
     {% endfor %}
     {% for message in form.time_start.errors %}
-      <div class="alert alert-danger" role="alert">{{ message }}</div>
+      <div class="alert alert-danger" role="alert">
+        Time Start: {{ message }}
+      </div>
     {% endfor %}
     {% for message in form.date_end.errors %}
-      <div class="alert alert-danger" role="alert">{{ message }}</div>
+      <div class="alert alert-danger" role="alert">
+        Date End: {{ message }}
+      </div>
     {% endfor %}
     {% for message in form.time_end.errors %}
-      <div class="alert alert-danger" role="alert">{{ message }}</div>
+      <div class="alert alert-danger" role="alert">
+        Time End: {{ message }}
+      </div>
     {% endfor %}
     {% for message in form.agg.errors %}
-      <div class="alert alert-warning" role="alert">{{ message }}</div>
+      <div class="alert alert-warning" role="alert">
+        Aggregation: {{ message }}
+      </div>
     {% endfor %}
       <div class="content-section">
           <form method="POST" action="" target="_blank">
