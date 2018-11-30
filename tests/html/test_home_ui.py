@@ -3,7 +3,7 @@ import time
 from pytest import mark
 
 
-@mark.smoke
+@mark.skip(reason="demonstration only")
 @mark.ui
 def test_can_navigate_to_home_page(chrome_browser):
     local_browser = chrome_browser

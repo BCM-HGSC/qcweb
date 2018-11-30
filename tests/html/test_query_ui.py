@@ -5,8 +5,7 @@ from pytest import mark
 
 from qcweb import parse_24h_time_str
 
-
-@mark.smoke
+@mark.skip(reason="demonstration only")
 @mark.ui
 class QueryTests:
     def test_can_navigate_to_query_page(self, chrome_browser):
