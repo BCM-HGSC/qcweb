@@ -50,11 +50,12 @@ def test_datetime_str(date_str_start,
 
     output_iso_str_start = start.isoformat(timespec='seconds')
     output_iso_str_end = end.isoformat(timespec='seconds')
-    # output_hours = # call the logic being tested here
+    td = end - start
+    output_hours = timedelta_to_hours(td)
 
     assert output_iso_str_start == expected_iso_str_start
     assert output_iso_str_end == expected_iso_str_end
-    # assert output_hours == expected_hours
+    assert output_hours == expected_hours
 
 
 @mark.unit
