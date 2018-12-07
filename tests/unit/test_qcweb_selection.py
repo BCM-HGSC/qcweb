@@ -39,6 +39,9 @@ def test_datetime_str(date_str_start,
     end = datetime.datetime.combine(date_end, time_end)
     if time_end == MIDNIGHT:
         end += ONE_DAY
+        return end
+    else:
+        return end
 
     output_iso_str_start = start.isoformat(timespec='seconds')
     output_iso_str_end = end.isoformat(timespec='seconds')
