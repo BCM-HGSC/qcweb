@@ -9,14 +9,6 @@ def test_limit_row():
     assert True
 
 
-
-
-def timedelta_to_hours(td):
-    """convert timedelta to seconds & return hours"""
-    days_to_sec = td.days * 86400
-    seconds = td.seconds
-    total_seconds = days_to_sec + seconds
-    return total_seconds//3600
 @mark.unit
 def test_query_ses():
     assert True

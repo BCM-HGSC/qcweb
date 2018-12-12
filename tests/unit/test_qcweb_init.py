@@ -62,3 +62,11 @@ def test_datetime_str(date_str_start,
     assert output_iso_str_start == expected_iso_str_start
     assert output_iso_str_end == expected_iso_str_end
     assert output_hours == expected_hours
+
+
+def timedelta_to_hours(td):
+    """convert timedelta to seconds & return hours"""
+    days_to_sec = td.days * 86400
+    seconds = td.seconds
+    total_seconds = days_to_sec + seconds
+    return total_seconds//3600
