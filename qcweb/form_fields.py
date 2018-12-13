@@ -116,12 +116,14 @@ class QueryForm(FlaskForm):
     )
 
     # graphs QC group presents and routinely uses
-    # plot_choice = SelectField(
-    #    u'Plot Choice:',
-    #    choices=[('plot_one', '10X-20X-30X cov chart'),
-    #             ('plot_two', 'Coverage Distribution'),
-    #             ('plot_three', 'Recent 75-ples')]
-    # )
+    plot_choice = SelectField(
+       u'Plot Choice:',
+       choices=[('no_plot', 'No Plot'),
+                ('plot_one', 'Bar Plot'),
+                ('plot_two', 'Group Pie Chart'),
+                ('plot_three', 'Application Pie Chart')],
+       default='no_plot'
+    )
 
     # display_table  = BooleanField("Display Table: ")
     display_table = RadioField(
