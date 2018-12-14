@@ -37,7 +37,7 @@ def plot_demo(data_frame):
     return image_data, image_type
 
 
-def grp_bar_plot(data_frame):
+def home_bar_plot(data_frame):
     img = io.BytesIO()
 
     # seaborn style setting
@@ -67,7 +67,7 @@ def grp_bar_plot(data_frame):
     return image_data, image_type
 
 
-def appl_pie_plot(data_frame):
+def home_pie_plot(data_frame):
     img = io.BytesIO()
 
     # matplot/ seaborn style setting

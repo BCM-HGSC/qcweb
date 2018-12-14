@@ -22,7 +22,7 @@ from .data import CURRENT_COLUMNS_KEEP
 from .selection import (limit_rows, head, sub_demo,
                         home_grp, home_appl,
                         query_ses, build_csv_data)
-from .plotting import plot_demo, grp_bar_plot, appl_pie_plot
+from .plotting import plot_demo, home_bar_plot, home_pie_plot
 from .form_fields import QueryForm
 
 # flask knows where to look for static & template files
@@ -42,7 +42,7 @@ def home():
 def home_p1_png():
     df_grp = home_grp()
     print(df_grp)
-    image_data, image_type = grp_bar_plot(df_grp)
+    image_data, image_type = home_bar_plot(df_grp)
     resp = make_response(image_data)
     resp.content_type = image_type
     return resp
@@ -52,7 +52,7 @@ def home_p1_png():
 def home_p2_png():
     df_appl = home_appl()
     print(df_appl)
-    image_data, image_type = appl_pie_plot(df_appl)
+    image_data, image_type = home_pie_plot(df_appl)
     resp = make_response(image_data)
     resp.content_type = image_type
     return resp
