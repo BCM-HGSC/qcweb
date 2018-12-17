@@ -5,8 +5,9 @@ import io
 
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-import seaborn as sns
+import seaborn as sns; sns.set_style('whitegrid')
 
+from .data import my_data
 
 def plot_demo(data_frame):
     """Demonstrates a particular plot for a data frame. Returns tuple of
@@ -14,7 +15,6 @@ def plot_demo(data_frame):
     img = io.BytesIO()
 
     # matplot/ seaborn style setting
-    sns.set_style('whitegrid')
     mpl.rcParams['patch.force_edgecolor'] = True
     sns.set(rc={'figure.figsize': (5.0, 5.0)})
 
