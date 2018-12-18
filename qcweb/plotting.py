@@ -170,7 +170,7 @@ def grp_pie_plot(data_frame):
 
     # save fig
     # p1.figure.tight_layout()
-    plt,savefig(img, format='png')
+    plt.savefig(img, format='png')
 
     # results
     plt.close()
@@ -212,7 +212,7 @@ def appl_pie_plot(data_frame):
     image_data = img.getvalue()
     img.close()
     image_type = "image/png"
-    return image_date, image_type
+    return image_data, image_type
 
 
 def make_pie(title, labels, sizes, num_rows, explode_index, angle):
