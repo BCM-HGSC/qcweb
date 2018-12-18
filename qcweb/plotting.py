@@ -3,9 +3,12 @@ pandas code. There should be no Flask code."""
 
 import io
 
+import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import seaborn as sns; sns.set_style('whitegrid')
+
+from matplotlib import cm # color
 
 from .data import my_data
 
