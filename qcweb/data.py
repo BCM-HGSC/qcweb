@@ -5,37 +5,37 @@ import pandas as pd
 
 RUN_FINISHED_DATE = 'Run Finished Date'
 
-COLS_KEEP = ['Lane Barcode',
-             'Metaproject',
-             'Midpool Library',
-             'Library',
-             'Run Finished Date',
-             'Total MB',
-             'Prefix',
+COLS_KEEP = ['LANE_BARCODE',
+             'METAPROJECT_NAME',
+             'LIBRARY',
+             'LIBRARY',
+             'RUN_FINISHED_DATE',
+             'TOTAL_MB',
+             'PREFIX',
              'Group']
 
-BASE_COLUMNS = ['Lane Barcode',
-                'Run Name',
-                'Metaproject',
-                'Midpool Library',
-                'Library',
-                'Run Finished Date',
-                'Collaborator Sample ID',
-                'Internal Processing Sample ID',
-                'Machine Name',
-                'Total MB',
-                'Ref Genome Path',
-                'Result Path']
-
-STAT_COLUMNS = ['Unique Aligned MB',
-                '% Align Read 1',
-                '% Align Read 2',
-                'Average Coverage',
-                'Chimeric rate',
-                'Per 10 Coverage Bases',
-                'Per 20 Coverage Bases',
-                'Q20 Bases',
-                'VerifyBamid Contamination Rate']
+BASE_COLUMNS = ['LANE_BARCODE',
+                'RUN_NAME',
+                'METAPROJECT_NAME',
+                'MIDPOOL_LIBRARY',
+                'LIBRARY',
+                'RUN_FINISHED_DATE',
+                'SAMPLE_EXTERNAL_ID',
+                'INTERNAL_PROCESSING_SAMPLE_ID',
+                'MACHINE_NAME',
+                'TOTAL_MB',
+                'REFERENCE_PATH_USED_ANALYSIS',
+                'RESULT_PATH']
+                
+STAT_COLUMNS = ['UNIQUE_ALIGNED_MB',
+                'R1_PERCENT_ALIGN_PF',
+                'R2_PERCENT_ALIGN_PF',
+                'AVERAGE_COVERAGE',
+                'CHIMERIC_RATE',
+                'PER_TEN_COVERAGE_BASES',
+                'PER_TWENTY_COVERAGE_BASES',
+                'Q20_BASES',
+                'VERIFYBAMID_CONTAMINATION_RATE']
 
 RUN_DATE_COLUMNS = ['Run Start Date',
                     'Analysis Start Date',
@@ -55,7 +55,8 @@ class MyData:
     def __init__(self):
         super(MyData, self).__init__()
         # self.at = pd.read_pickle('data/2018_at.pickle.gzip')
-        self.at = pd.read_pickle('data/at.pickle.gzip')
+        #self.at = pd.read_pickle('data/at.pickle.gzip')
+        self.at = pd.read_parquet('all_exemp_2018-12-12_ID.1999063.parquet')
         self.at_head = self.at.head()
         print('*** loaded the data with length of', len(self.at))
 
