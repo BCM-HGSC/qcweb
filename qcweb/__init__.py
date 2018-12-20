@@ -75,6 +75,10 @@ def table(qcreport=None, platform=None,
         group=group, appl=appl,
         start=start, end=end
     )
+    pl_url = url_for(
+        'plot', platform=platform,
+        group=group, appl=appl, start=start, end=end
+    )
     return render_template('table.html', title='Table',
                            data=limit_rows(data)[CURRENT_COLUMNS_KEEP],
                            qcreport=qcreport, platform=platform,
@@ -82,7 +86,8 @@ def table(qcreport=None, platform=None,
                            start=start, end=end,
                            agg=agg, display_table=display_table,
                            num_rows=len(data),
-                           dl_url=dl_url)
+                           dl_url=dl_url,
+                           pl_url=pl_url)
 
 
 CSV_TYPE = 'text/csv'
