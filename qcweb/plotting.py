@@ -113,7 +113,7 @@ def bar_plot(data_frame):
 
     # matplot/ seaborn setting
     mpl.rcParams['patch.force_edgecolor'] = True
-    sns.set(rc={'figure.figsize': (13, 7)}) # figure size in inches
+    sns.set(rc={'figure.figsize': (10, 6)}) # figure size in inches
 
     # order = data_frane['Group'].value_counts().index # query data
     at = my_data.at # all time data
@@ -228,10 +228,10 @@ def make_pie(title, labels, sizes, num_rows, explode_index, angle):
 
     # matplot/ seaborn style setting
     mpl.rcParams['patch.force_edgecolor'] = True
-    plt.rcParams["figure.figsize"] = (7, 5) # set fig size in inches
+    plt.rcParams["figure.figsize"] = (4, 4) # set fig size in inches
 
     # fig title
-    fig1.suptitle(title, fontsize=20)
+    fig1.suptitle(title, fontsize=15)
 
     # legend options
     plt.legend(bbox_to_anchor=(0.95, 1), loc=2, borderaxespad=0.)
