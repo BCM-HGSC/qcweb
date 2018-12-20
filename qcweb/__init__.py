@@ -165,8 +165,25 @@ def parse_24h_time_str(time_str):
 
 
 @app.route("/plot")
-def plot():
-    return render_template('plot.html', title='Plot')
+@app.route("/plot/<start>/<end>/<platform>/<group>/<appl>")
+def plot(qcreport=None, platform=None,
+         group=None, appl=None,
+         start=None, end=None,
+         agg=None, plot_choice=None):
+    at = my_data.at
+    data = query_ses(platform, group, appl, start, end)
+    pl_url = url_for(
+        'result_plot', platform=platform,
+        group=group, appl=appl, start=start, end=end
+    )
+    return render_template('plot.html', title='Plot',
+                           data=data, qcreport=qcreport,
+                           platform=platform,
+                           group=group, appl=appl,
+                           start=start, end=end,
+                           agg=agg, plot_choice=plot_choice,
+                           plot_num_rows=len(data),
+                           pl_url=pl_url)
 
 
 @app.route("/plot/p1.png")
