@@ -193,3 +193,21 @@ def p1_png():
     resp = make_response(image_data)
     resp.content_type = image_type
     return resp
+
+
+@app.route("/result_plot")
+@app.route("/result_plot/<start>/<end>/<platform>/<group>/<appl>")
+def result_plot(
+        platform=None,
+        group=None, appl=None,
+        start=None, end=None
+    ):
+    at = my_data.at
+    data = query_ses(platform, group, appl, start, end)
+    # call the logic here
+    image_data, image_type = bar_plot(data)
+    image_data, image_type = grp_pie_plot(data)
+    image_data, image_type = appl_pie_plot(data)
+    resp = make_response(image_data)
+    resp.content_type = image_type
+    return resp
