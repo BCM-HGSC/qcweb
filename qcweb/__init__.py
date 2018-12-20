@@ -132,7 +132,7 @@ def query():
             print('end: ', date_end, time_end, end, sep='\n')
             print(type(date_end), type(time_end), type(end))
             agg = form.agg.data
-            # plot_choice = form.plot_choice.data
+            plot_choice = form.plot_choice.data
             display_table = form.display_table.data
             want_table = True  # TODO: make False based on form
             print('results')
