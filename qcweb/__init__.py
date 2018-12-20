@@ -18,11 +18,13 @@ from wtforms import (BooleanField, DateField, DateTimeField,
 from wtforms.validators import DataRequired
 
 # After another blank line, import local libraries.
-from .data import CURRENT_COLUMNS_KEEP
+from .data import my_data, CURRENT_COLUMNS_KEEP
 from .selection import (limit_rows, head, sub_demo,
                         home_grp, home_appl,
                         query_ses, build_csv_data)
-from .plotting import plot_demo, home_bar_plot, home_pie_plot
+from .plotting import (plot_demo,
+                       home_bar_plot, home_pie_plot,
+                       bar_plot, grp_pie_plot, appl_pie_plot)
 from .form_fields import QueryForm
 
 # flask knows where to look for static & template files
