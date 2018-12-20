@@ -152,8 +152,8 @@ def grp_pie_plot(data_frame):
     grp = data_frame.groupby('Group')
     grp2 = (data_frame.groupby('Group')['Numeric Total MB'].sum()).reset_index()
     grp2['Total TB'] = (grp2['Numeric Total MB'] / 1_000_000)
-    # grp3 = grp2
-    grp3 = grp2[grp2['Total TB'] > 100] # filter out negligence
+    grp3 = grp2
+    # grp3 = grp2[grp2['Total TB'] > 100] # filter out negligence
 
     grp = grp3['Group']
     grp_sizes = grp3['Total TB']
@@ -187,8 +187,8 @@ def appl_pie_plot(data_frame):
     appl = data_frame.groupby('Application')
     appl2 = (data_frame.groupby('Application')['Numeric Total MB'].sum()).reset_index()
     appl2['Total TB'] = (appl2['Numeric Total MB'] / 1_000_000)
-    # appl3 = appl2
-    appl3 = appl2[appl2['Total TB'] > 10] # filter out negligence
+    appl3 = appl2
+    # appl3 = appl2[appl2['Total TB'] > 10] # filter out negligence
 
     appl = appl3['Application']
     appl_sizes = appl3['Total TB']
