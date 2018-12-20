@@ -146,7 +146,12 @@ def query():
                                         end=end.isoformat(),
                                         agg=agg, display_table=display_table))
             else:
-                return redirect(url_for("plot"))
+                return redirect(url_for("plot",
+                                        qcreport=qcreport, platform=platform,
+                                        group=group, appl=appl,
+                                        start=start.isoformat(),
+                                        end=end.isoformat(),
+                                        agg=agg, plot_choice=plot_choice))
         assert not is_valid
         flash(f'Form not valid {form.qcreport.data}!', category='warning')
         print('back to query.html')
