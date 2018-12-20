@@ -2,4 +2,8 @@
 {% block content %}
   <h1>Plot Page</h1>
   <img src="{{ url_for('p1_png') }}" alt="graph">
+  <hr>
+  {{ plot_num_rows}}
+  <br>
+  <img src="{{ url_for('result_plot') }}" alt="graph">
 {% endblock content %}
