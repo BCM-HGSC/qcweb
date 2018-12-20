@@ -168,9 +168,9 @@ def grp_pie_plot(data_frame):
 
     make_pie(title, labels, sizes, num_rows, explode_index, angle)
 
-    # save fig
-    # p1.figure.tight_layout()
-    plt.savefig(img, format='png')
+    # resize the figure box
+    # similar to calling figure.tight_layout()
+    plt.savefig(img, format='png', bbox_inches='tight')
 
     # results
     plt.close()
@@ -203,9 +203,9 @@ def appl_pie_plot(data_frame):
 
     make_pie(title, labels, sizes, num_rows, explode_index, angle)
 
-    # save fig
-    # p1.figure.tight_layout()
-    plt.savefig(img, format='png')
+    # resize the figure box
+    # similar to calling figure.tight_layout()
+    plt.savefig(img, format='png', bbox_inches='tight')
 
     # results
     plt.close()
