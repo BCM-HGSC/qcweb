@@ -169,7 +169,7 @@ def plot():
     return render_template('plot.html', title='Plot')
 
 
-@app.route("/plots/p1.png")
+@app.route("/plot/p1.png")
 def p1_png():
     at_sub = sub_demo()
     image_data, image_type = plot_demo(at_sub)
