@@ -231,10 +231,11 @@ def make_pie(title, labels, sizes, num_rows, explode_index, angle):
     plt.rcParams["figure.figsize"] = (4, 4) # set fig size in inches
 
     # fig title
-    fig1.suptitle(title, fontsize=15)
+    fig1.suptitle(title, fontsize=13)
 
     # legend options
-    plt.legend(bbox_to_anchor=(0.95, 1), loc=2, borderaxespad=0.)
+    # bbox_to_anchor(x0, y0, width, height)
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
 
     # set color
     cs=cm.Set1(np.arange(40)/40.)
