@@ -107,28 +107,28 @@ def by_platform(result_df, platform):
 
 # TODO: implement QC group names
 # complete list of current QC group names
-CURRENT_GROUP_NAMES = '''
-    TOPMed
-    CCDG
-    Complex
-    CHARGE
-    TEDDY
-    Cancer
-    Research
-    Mendelian
-    TCGA
-    Metagenomic
-    ADSP
-    Gabriella
-    Comparative
-    Other
-    Insects
-    TG
-    H3
-    Ruii
-    Virology
-    BAC
-'''.split()
+CURRENT_GROUP_NAMES = [
+    'TOPMed',
+    'CCDG',
+    'Complex Disease',
+    'CHARGE',
+    'TEDDY',
+    'Cancer',
+    'Research & Development',
+    'Mendelian',
+    'TCGA',
+    'Metagenomic',
+    'ADSP',
+    'Gabriella'
+    'Comparative',
+    'Other',
+    'Insects',
+    'TG',
+    'H3 Africa',
+    'Rui Chen',
+    'Virology & Microbiology',
+    'BAC',
+]
 
 
 def by_group(result_df, group):
