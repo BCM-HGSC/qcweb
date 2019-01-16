@@ -109,20 +109,20 @@ class QueryForm(FlaskForm):
     agg = SelectField(
         u'Aggregation: ',
         validators=[InputRequired("Please choose an Aggregation.")],
-        choices=[('do_not_agg', 'Do Not Aggregate'),
-                 ('by_group', 'By Group'),
-                 ('by_appl', 'By Application')],
-        default='do_not_agg'
+        choices=[('Do Not Aggregate', 'Do Not Aggregate'),
+                 ('By Group', 'By Group'),
+                 ('By Application', 'By Application')],
+        default='Do Not Aggregate'
     )
 
     # graphs QC group presents and routinely uses
     plot_choice = SelectField(
        u'Plot Choice:',
-       choices=[('no_plot', 'No Plot'),
-                ('plot_one', 'Bar Plot'),
-                ('plot_two', 'Group Pie Chart'),
-                ('plot_three', 'Application Pie Chart')],
-       default='no_plot'
+       choices=[('No Plot', 'No Plot'),
+                ('Bar Plot', 'Bar Plot'),
+                ('Group Pie Chart', 'Group Pie Chart'),
+                ('Application Pie Chart', 'Application Pie Chart')],
+       default='No Plot'
     )
 
     # display_table  = BooleanField("Display Table: ")
