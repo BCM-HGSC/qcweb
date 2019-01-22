@@ -48,11 +48,6 @@
         Aggregation: {{ message }}
       </div>
     {% endfor %}
-    {% for message in form.plot_choice.errors %}
-      <div class="alert alert-warning" role="alert">
-        Plot: {{ message }}
-      </div>
-    {% endfor %}
       <div class="content-section">
           <form method="POST" action="" target="_blank">
           {{ form.qcreport.label }}{{ form.qcreport }}
@@ -89,9 +84,6 @@
           <br>
           {{ form.agg.label }}{{ form.agg }}
           <br>
-          {{ form.plot_choice.label }}{{ form.plot_choice }}
-          <br>
-          {{ form.display_table.label }}{{ form.display_table }}
           {{ form.submit(class="btn btn-outline-info") }}
           </form>
       </div>

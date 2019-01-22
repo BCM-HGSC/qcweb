@@ -25,7 +25,7 @@ from .selection import (limit_rows, head, sub_demo,
 from .plotting import (plot_demo,
                        home_bar_plot, home_pie_plot,
                        bar_plot, grp_pie_plot, appl_pie_plot)
-from .form_fields import QueryForm
+from .form_fields import QueryForm, PlotForm
 
 # flask knows where to look for static & template files
 app = Flask(__name__)
@@ -63,12 +63,11 @@ def home_p2_png():
 @app.route("/table")
 @app.route("/table/<start>")
 @app.route("/table/<start>/<end>")
-@app.route("/table/<start>/<end>/<platform>/<group>/<appl>/<qcreport>"
-           "/<agg>/<display_table>")
+@app.route("/table/<start>/<end>/<platform>/<group>/<appl>/<qcreport>/<agg>")
 def table(qcreport=None, platform=None,
           group=None, appl=None,
           start=None, end=None,
-          agg=None, display_table=None):
+          agg=None):
     data = query_ses(platform, group, appl, start, end)
     dl_url = url_for(
         'table_download',
@@ -76,22 +75,18 @@ def table(qcreport=None, platform=None,
         group=group, appl=appl,
         start=start, end=end
     )
-    pl_url = url_for(
-        'plot',
-        platform=platform,
-        group=group, appl=appl,
-        start=start, end=end
-    )
+    plot_form = PlotForm(start=start, end=end,
+                         platform=platform,
+                         group=group, appl=appl)
     return render_template('table.html', title='Table',
                            data=limit_rows(data)[CURRENT_COLUMNS_KEEP],
                            qcreport=qcreport, platform=platform,
                            group=group, appl=appl,
                            start=start, end=end,
                            agg=agg,
-                           display_table=display_table,
                            num_rows=len(data),
                            dl_url=dl_url,
-                           pl_url=pl_url)
+                           plot_form=plot_form)
 
 
 CSV_TYPE = 'text/csv'
@@ -141,28 +136,15 @@ def query():
             print('end: ', date_end, time_end, end, sep='\n')
             print(type(date_end), type(time_end), type(end))
             agg = form.agg.data
-            plot_choice = form.plot_choice.data
-            print('plot_choice: ',  plot_choice)
-            print(type(plot_choice))
-            display_table = form.display_table.data
-            want_table = True  # TODO: make False based on form
             print('results')
-            if want_table:
-                print(start)
-                print(type(start))
-                return redirect(url_for("table",
-                                        qcreport=qcreport, platform=platform,
-                                        group=group, appl=appl,
-                                        start=start.isoformat(),
-                                        end=end.isoformat(),
-                                        agg=agg, display_table=display_table))
-            else:
-                return redirect(url_for("plot",
-                                        qcreport=qcreport, platform=platform,
-                                        group=group, appl=appl,
-                                        start=start.isoformat(),
-                                        end=end.isoformat(),
-                                        agg=agg, plot_choice=plot_choice))
+            print(start)
+            print(type(start))
+            return redirect(url_for("table",
+                                    qcreport=qcreport, platform=platform,
+                                    group=group, appl=appl,
+                                    start=start.isoformat(),
+                                    end=end.isoformat(),
+                                    agg=agg))
         assert not is_valid
         flash(f'Form not valid {form.qcreport.data}!', category='warning')
         print('back to query.html')
@@ -176,57 +158,55 @@ def parse_24h_time_str(time_str):
 
 
 @app.route("/plot")
-@app.route("/plot/<start>/<end>/<platform>/<group>/<appl>")
-def plot(qcreport=None, platform=None,
-         group=None, appl=None,
-         start=None, end=None,
-         agg=None, plot_choice=None):
+def plot():
+    parameters = request.args
+    print(parameters)
+    platform = parameters.get('platform', None)
+    group = parameters.get('group', None)
+    appl = parameters.get('appl', None)
+    start = parameters.get('start', None)
+    end = parameters.get('end', None)
+    agg = parameters.get('agg', None)
+    plot_choice = parameters.get('plot_choice', None)
     at = my_data.at
     data = query_ses(platform, group, appl, start, end)
-    pl_url = url_for(
-        'result_plot',
-        data=data,
-        platform=platform,
-        group=group, appl=appl, start=start, end=end,
-        plot_choice=plot_choice
-    )
     return render_template('plot.html', title='Plot',
-                           data=data, qcreport=qcreport,
+                           data=data,
                            platform=platform,
                            group=group, appl=appl,
                            start=start, end=end,
                            agg=agg, plot_choice=plot_choice,
-                           plot_num_rows=len(data),
-                           pl_url=pl_url)
+                           plot_num_rows=len(data))
 
 
 @app.route("/result_plot")
-@app.route("/result_plot/<start>/<end>/<platform>/<group>/<appl>")
+@app.route("/result_plot/<start>/<end>/<platform>/<group>/<appl>"
+           "/<plot_choice>")
 def result_plot(
         platform=None,
         group=None, appl=None,
         start=None, end=None,
-        # plot_choice=None
+        plot_choice=None
     ):
+    print(f'in result_plot with plot_choice={plot_choice}')
     at = my_data.at
-    # plot_choice = plot_choice
-    # print('result_plot_choice: ', plot_choice)
     data = query_ses(platform, group, appl, start, end)
     # call the logic here
-    image_data, image_type = bar_plot(data)
-    image_data, image_type = grp_pie_plot(data)
-    image_data, image_type = appl_pie_plot(data)
-    # image_data, image_type = get_plot_func(choice_dict[plot_choice])
+    # image_data, image_type = bar_plot(data)
+    # image_data, image_type = grp_pie_plot(data)
+    # image_data, image_type = appl_pie_plot(data)
+    plot_func = choice_dict.get(plot_choice, bar_plot)
+    image_data, image_type = plot_func(data)
     resp = make_response(image_data)
     resp.content_type = image_type
     return resp
 
 
 choice_dict = {
-        'Bar Plot': [bar_plot],
-        'Group Pie Chart': [grp_pie_plot],
-        'Application Pie Chart': [appl_pie_plot],
-        'No Plot': [bar_plot]
+        'Bar Plot': bar_plot,
+        'Group Pie Chart': grp_pie_plot,
+        'Application Pie Chart': appl_pie_plot,
+        'No Plot': bar_plot
 }
 
 

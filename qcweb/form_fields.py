@@ -1,7 +1,7 @@
 import datetime
 from flask import Flask, render_template, session, redirect, url_for
 from flask_wtf import FlaskForm
-from wtforms import (StringField, BooleanField, DateField,
+from wtforms import (StringField, BooleanField, DateField, HiddenField,
                      RadioField, SelectField, TextField,
                      TextAreaField, SubmitField, IntegerField)
 from wtforms.validators import (DataRequired, InputRequired,
@@ -115,22 +115,22 @@ class QueryForm(FlaskForm):
         default='Do Not Aggregate'
     )
 
+    submit = SubmitField('Submit')
+
+
+class PlotForm(FlaskForm):
     # graphs QC group presents and routinely uses
+    start = HiddenField('start')
+    end = HiddenField('end')
+    platform = HiddenField('platform')
+    group = HiddenField('group')
+    appl = HiddenField('appl')
     plot_choice = SelectField(
        u'Plot Choice:',
-       choices=[('No Plot', 'No Plot'),
-                ('Bar Plot', 'Bar Plot'),
+       choices=[('Bar Plot', 'Bar Plot'),
                 ('Group Pie Chart', 'Group Pie Chart'),
                 ('Application Pie Chart', 'Application Pie Chart')],
-       default='No Plot'
+       default='Bar Plot'
     )
 
-    # display_table  = BooleanField("Display Table: ")
-    display_table = RadioField(
-        'Display Table:',
-        validators=[InputRequired("Please choose Yes or No.")],
-        choices=[('Yes', 'Yes'), ('No', 'No')],
-        default='Yes'
-    )
-
-    submit = SubmitField('Submit')
+    submit = SubmitField('Plot')

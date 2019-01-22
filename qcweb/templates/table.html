@@ -11,11 +11,18 @@
       <li>Start: {{ start }}</li>
       <li>End: {{ end }}</li>
       <li>Aggregation: {{ agg }}</li>
-      <li>Display Table: {{ display_table }}</li>
     </ul>
     <!-- Auto width -->
     <a href="{{ dl_url }}" download="qcweb_query.csv"><button>Download (CSV)</button></a>
-    <a href="{{ pl_url }}"><button>Plot These Results</button></a>
+    <form method="GET" action="/plot" target="_blank">
+      {{ plot_form.start }}
+      {{ plot_form.end }}
+      {{ plot_form.platform }}
+      {{ plot_form.group }}
+      {{ plot_form.appl }}
+      {{ plot_form.plot_choice.label }}{{ plot_form.plot_choice }}
+      {{ plot_form.submit(class="btn btn-outline-info") }}
+    </form>
     <br>
     <br>
     {{ data.to_html(justify='center') | safe }}
