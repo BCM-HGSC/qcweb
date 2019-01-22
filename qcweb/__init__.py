@@ -67,7 +67,8 @@ def home_p2_png():
 def table(qcreport=None, platform=None,
           group=None, appl=None,
           start=None, end=None,
-          agg=None, display_table=None):
+          agg=None, plot_choice=None,
+          display_table=None):
     data = query_ses(platform, group, appl, start, end)
     dl_url = url_for(
         'table_download',
@@ -76,15 +77,19 @@ def table(qcreport=None, platform=None,
         start=start, end=end
     )
     pl_url = url_for(
-        'plot', platform=platform,
-        group=group, appl=appl, start=start, end=end
+        'plot',
+        platform=platform,
+        group=group, appl=appl,
+        start=start, end=end,
+        plot_choice=plot_choice
     )
     return render_template('table.html', title='Table',
                            data=limit_rows(data)[CURRENT_COLUMNS_KEEP],
                            qcreport=qcreport, platform=platform,
                            group=group, appl=appl,
                            start=start, end=end,
-                           agg=agg, display_table=display_table,
+                           agg=agg, plot_choice=plot_choice,
+                           display_table=display_table,
                            num_rows=len(data),
                            dl_url=dl_url,
                            pl_url=pl_url)
@@ -180,8 +185,11 @@ def plot(qcreport=None, platform=None,
     at = my_data.at
     data = query_ses(platform, group, appl, start, end)
     pl_url = url_for(
-        'result_plot', platform=platform,
-        group=group, appl=appl, start=start, end=end
+        'result_plot',
+        data=data,
+        platform=platform,
+        group=group, appl=appl, start=start, end=end,
+        plot_choice=plot_choice
     )
     return render_template('plot.html', title='Plot',
                            data=data, qcreport=qcreport,
@@ -198,9 +206,12 @@ def plot(qcreport=None, platform=None,
 def result_plot(
         platform=None,
         group=None, appl=None,
-        start=None, end=None
+        start=None, end=None,
+        # plot_choice=None
     ):
     at = my_data.at
+    # plot_choice = plot_choice
+    # print('result_plot_choice: ', plot_choice)
     data = query_ses(platform, group, appl, start, end)
     # call the logic here
     image_data, image_type = bar_plot(data)
