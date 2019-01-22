@@ -63,12 +63,12 @@ def home_p2_png():
 @app.route("/table")
 @app.route("/table/<start>")
 @app.route("/table/<start>/<end>")
-@app.route("/table/<start>/<end>/<platform>/<group>/<appl>")
+@app.route("/table/<start>/<end>/<platform>/<group>/<appl>/<qcreport>"
+           "/<agg>/<display_table>")
 def table(qcreport=None, platform=None,
           group=None, appl=None,
           start=None, end=None,
-          agg=None, plot_choice=None,
-          display_table=None):
+          agg=None, display_table=None):
     data = query_ses(platform, group, appl, start, end)
     dl_url = url_for(
         'table_download',
@@ -80,15 +80,14 @@ def table(qcreport=None, platform=None,
         'plot',
         platform=platform,
         group=group, appl=appl,
-        start=start, end=end,
-        plot_choice=plot_choice
+        start=start, end=end
     )
     return render_template('table.html', title='Table',
                            data=limit_rows(data)[CURRENT_COLUMNS_KEEP],
                            qcreport=qcreport, platform=platform,
                            group=group, appl=appl,
                            start=start, end=end,
-                           agg=agg, plot_choice=plot_choice,
+                           agg=agg,
                            display_table=display_table,
                            num_rows=len(data),
                            dl_url=dl_url,
