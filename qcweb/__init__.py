@@ -206,9 +206,23 @@ def result_plot(
     image_data, image_type = bar_plot(data)
     image_data, image_type = grp_pie_plot(data)
     image_data, image_type = appl_pie_plot(data)
+    # image_data, image_type = get_plot_func(choice_dict[plot_choice])
     resp = make_response(image_data)
     resp.content_type = image_type
     return resp
+
+
+choice_dict = {
+        'Bar Plot': [bar_plot],
+        'Group Pie Chart': [grp_pie_plot],
+        'Application Pie Chart': [appl_pie_plot],
+        'No Plot': [bar_plot]
+}
+
+
+def get_plot_func(func_list):
+    for f in func_list:
+        f(data)
 
 
 @app.route("/plot/p1.png")
