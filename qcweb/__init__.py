@@ -78,7 +78,7 @@ def table(qcreport=None, platform=None,
     plot_form = PlotForm(start=start, end=end,
                          platform=platform,
                          group=group, appl=appl)
-    print(f'in table with plot_choice={plot_choice}')
+    # print(f'in table with plot_choice={plot_choice}')
     return render_template('table.html', title='Table',
                            data=limit_rows(data)[CURRENT_COLUMNS_KEEP],
                            qcreport=qcreport, platform=platform,
@@ -158,27 +158,33 @@ def parse_24h_time_str(time_str):
     return time(*map(int, time_str.split(':')))
 
 
-@app.route("/plot")
+@app.route("/plot", methods=['POST', 'GET'])
 def plot():
     parameters = request.args
     print(parameters)
-    platform = parameters.get('platform', None)
-    group = parameters.get('group', None)
-    appl = parameters.get('appl', None)
-    start = parameters.get('start', None)
-    end = parameters.get('end', None)
-    agg = parameters.get('agg', None)
-    plot_choice = parameters.get('plot_choice', None)
-    at = my_data.at
-    data = query_ses(platform, group, appl, start, end)
-    print(f'in plot with plot_choice={plot_choice}')
+    if request.method == 'GET':
+        platform = parameters.get('platform', None)
+        group = parameters.get('group', None)
+        appl = parameters.get('appl', None)
+        start = parameters.get('start', None)
+        end = parameters.get('end', None)
+        agg = parameters.get('agg', None)
+        plot_choice = parameters.get('plot_choice', None)
+        at = my_data.at
+        data = query_ses(platform, group, appl, start, end)
+        print(f'in plot with plot_choice={plot_choice}')
+        return redirect(url_for("result_plot",
+                                data=data,
+                                platform=platform,
+                                group=group, appl=appl,
+                                start=start, end=end,
+                                agg=agg, plot_choice=plot_choice,
+                                plot_num_rows=len(data)))
     return render_template('plot.html', title='Plot',
-                           data=data,
                            platform=platform,
                            group=group, appl=appl,
                            start=start, end=end,
-                           agg=agg, plot_choice=plot_choice,
-                           plot_num_rows=len(data))
+                           agg=agg, plot_choice=plot_choice)
 
 
 @app.route("/result_plot")
@@ -208,8 +214,7 @@ def result_plot(
 choice_dict = {
         'Bar Plot': bar_plot,
         'Group Pie Chart': grp_pie_plot,
-        'Application Pie Chart': appl_pie_plot,
-        'No Plot': bar_plot
+        'Application Pie Chart': appl_pie_plot
 }
 
 
