@@ -163,7 +163,7 @@ def grp_pie_plot(data_frame):
     labels = grp
     sizes = grp_sizes
     num_rows = len(grp3)
-    explode_index = 1
+    explode_index = 0
     angle = 100
 
     make_pie(title, labels, sizes, num_rows, explode_index, angle)
@@ -198,7 +198,7 @@ def appl_pie_plot(data_frame):
     labels = appl
     sizes = appl_sizes
     num_rows = len(appl3)
-    explode_index = 3
+    explode_index = 0
     angle = 110
 
     make_pie(title, labels, sizes, num_rows, explode_index, angle)
