@@ -174,21 +174,20 @@ def plot():
     at = my_data.at
     data = query_ses(platform, group, appl, start, end)
     print(f'in plot with plot_choice={plot_choice}')
-    if request.method == 'POST':
-        return render_template('plot.html', title='Plot',
-                               platform=platform,
-                               group=group, appl=appl,
-                               start=start, end=end,
-                               agg=agg, plot_choice=plot_choice,
-                               plot_num_rows=len(data))
-
-    return redirect(url_for("result_plot",
-                            data=data,
-                            platform=platform,
-                            group=group, appl=appl,
-                            start=start, end=end,
-                            agg=agg, plot_choice=plot_choice))
-
+    pl_url = url_for(
+            'result_plot',
+            platform=platform,
+            group=group, appl=appl,
+            start=start, end=end,
+            plot_choice=plot_choice)
+    return render_template('plot.html', title='Plot',
+                           data=data,
+                           platform=platform,
+                           group=group, appl=appl,
+                           start=start, end=end,
+                           agg=agg, plot_choice=plot_choice,
+                           pl_url=pl_url,
+                           plot_num_rows=len(data))
 
 @app.route("/result_plot")
 @app.route("/result_plot/<start>/<end>/<platform>/<group>/<appl>"
