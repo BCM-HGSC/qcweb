@@ -162,29 +162,30 @@ def parse_24h_time_str(time_str):
 def plot():
     parameters = request.args
     print(parameters)
-    if request.method == 'GET':
-        platform = parameters.get('platform', None)
-        group = parameters.get('group', None)
-        appl = parameters.get('appl', None)
-        start = parameters.get('start', None)
-        end = parameters.get('end', None)
-        agg = parameters.get('agg', None)
-        plot_choice = parameters.get('plot_choice', None)
-        at = my_data.at
-        data = query_ses(platform, group, appl, start, end)
-        print(f'in plot with plot_choice={plot_choice}')
-        return redirect(url_for("result_plot",
-                                data=data,
-                                platform=platform,
-                                group=group, appl=appl,
-                                start=start, end=end,
-                                agg=agg, plot_choice=plot_choice,
-                                plot_num_rows=len(data)))
-    return render_template('plot.html', title='Plot',
-                           platform=platform,
-                           group=group, appl=appl,
-                           start=start, end=end,
-                           agg=agg, plot_choice=plot_choice)
+    platform = parameters.get('platform', None)
+    group = parameters.get('group', None)
+    appl = parameters.get('appl', None)
+    start = parameters.get('start', None)
+    end = parameters.get('end', None)
+    agg = parameters.get('agg', None)
+    plot_choice = parameters.get('plot_choice', None)
+    at = my_data.at
+    data = query_ses(platform, group, appl, start, end)
+    print(f'in plot with plot_choice={plot_choice}')
+    if request.method == 'POST':
+        return render_template('plot.html', title='Plot',
+                               platform=platform,
+                               group=group, appl=appl,
+                               start=start, end=end,
+                               agg=agg, plot_choice=plot_choice,
+                               plot_num_rows=len(data))
+
+    return redirect(url_for("result_plot",
+                            data=data,
+                            platform=platform,
+                            group=group, appl=appl,
+                            start=start, end=end,
+                            agg=agg, plot_choice=plot_choice))
 
 
 @app.route("/result_plot")
@@ -204,6 +205,7 @@ def result_plot(
     # image_data, image_type = grp_pie_plot(data)
     # image_data, image_type = appl_pie_plot(data)
     plot_func = choice_dict.get(plot_choice, bar_plot)
+    print(f'in result_plot with plot_num_rows={len(data)}')
     print(f'in result_plot with plot_func={plot_func}')
     image_data, image_type = plot_func(data)
     resp = make_response(image_data)
