@@ -159,6 +159,8 @@ def parse_24h_time_str(time_str):
 
 
 @app.route("/plot", methods=['POST', 'GET'])
+@app.route("/plot/<platform>/<group>/<appl>/<start>/<end>/<agg>"
+           "/<plot_choice>")
 def plot():
     parameters = request.args
     print(parameters)
