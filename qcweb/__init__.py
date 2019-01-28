@@ -78,7 +78,6 @@ def table(qcreport=None, platform=None,
     plot_form = PlotForm(start=start, end=end,
                          platform=platform,
                          group=group, appl=appl)
-    # print(f'in table with plot_choice={plot_choice}')
     return render_template('table.html', title='Table',
                            data=limit_rows(data)[CURRENT_COLUMNS_KEEP],
                            qcreport=qcreport, platform=platform,
@@ -201,12 +200,9 @@ def result_plot(
     print(f'in result_plot with plot_choice={plot_choice}')
     at = my_data.at
     data = query_ses(platform, group, appl, start, end)
-    # call the logic here
-    # image_data, image_type = bar_plot(data)
-    # image_data, image_type = grp_pie_plot(data)
-    # image_data, image_type = appl_pie_plot(data)
-    plot_func = choice_dict.get(plot_choice, bar_plot)
     print(f'in result_plot with plot_num_rows={len(data)}')
+    # call the logic here
+    plot_func = choice_dict.get(plot_choice, bar_plot)
     print(f'in result_plot with plot_func={plot_func}')
     image_data, image_type = plot_func(data)
     resp = make_response(image_data)
@@ -219,11 +215,6 @@ choice_dict = {
         'Group Pie Chart': grp_pie_plot,
         'Application Pie Chart': appl_pie_plot
 }
-
-
-def get_plot_func(func_list):
-    for f in func_list:
-        f(data)
 
 
 @app.route("/plot/p1.png")
