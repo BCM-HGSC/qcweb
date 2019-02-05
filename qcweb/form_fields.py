@@ -1,7 +1,7 @@
 import datetime
 from flask import Flask, render_template, session, redirect, url_for
 from flask_wtf import FlaskForm
-from wtforms import (StringField, BooleanField, DateField,
+from wtforms import (StringField, BooleanField, DateField, HiddenField,
                      RadioField, SelectField, TextField,
                      TextAreaField, SubmitField, IntegerField)
 from wtforms.validators import (DataRequired, InputRequired,
@@ -109,26 +109,28 @@ class QueryForm(FlaskForm):
     agg = SelectField(
         u'Aggregation: ',
         validators=[InputRequired("Please choose an Aggregation.")],
-        choices=[('do_not_agg', 'Do Not Aggregate'),
-                 ('by_group', 'By Group'),
-                 ('by_appl', 'By Application')],
-        default='do_not_agg'
-    )
-
-    # graphs QC group presents and routinely uses
-    # plot_choice = SelectField(
-    #    u'Plot Choice:',
-    #    choices=[('plot_one', '10X-20X-30X cov chart'),
-    #             ('plot_two', 'Coverage Distribution'),
-    #             ('plot_three', 'Recent 75-ples')]
-    # )
-
-    # display_table  = BooleanField("Display Table: ")
-    display_table = RadioField(
-        'Display Table:',
-        validators=[InputRequired("Please choose Yes or No.")],
-        choices=[('Yes', 'Yes'), ('No', 'No')],
-        default='Yes'
+        choices=[('Do Not Aggregate', 'Do Not Aggregate'),
+                 ('By Group', 'By Group'),
+                 ('By Application', 'By Application')],
+        default='Do Not Aggregate'
     )
 
     submit = SubmitField('Submit')
+
+
+class PlotForm(FlaskForm):
+    # graphs QC group presents and routinely uses
+    start = HiddenField('start')
+    end = HiddenField('end')
+    platform = HiddenField('platform')
+    group = HiddenField('group')
+    appl = HiddenField('appl')
+    plot_choice = SelectField(
+       u'Plot Choice:',
+       choices=[('Bar Plot', 'Bar Plot'),
+                ('Group Pie Chart', 'Group Pie Chart'),
+                ('Application Pie Chart', 'Application Pie Chart')],
+       default='Bar Plot'
+    )
+
+    submit = SubmitField('Plot')

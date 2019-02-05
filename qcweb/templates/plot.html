@@ -1,5 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
   <h1>Plot Page</h1>
-  <img src="{{ url_for('p1_png') }}" alt="graph">
+  <br>
+  {{ plot_num_rows}}
+  <br>
+  <br>
+  <a href="{{ pl_url }}" download="plot.png"><button>Plot_Download</button></a>
+  <hr>
+  <img src="{{ pl_url }}" alt="graph">
 {% endblock content %}
