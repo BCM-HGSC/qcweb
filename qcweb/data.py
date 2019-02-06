@@ -3,29 +3,28 @@
 import pandas as pd
 
 
-RUN_FINISHED_DATE = 'Run Finished Date'
+RUN_FINISHED_DATE = 'RUN_FINISHED_DATE'
 
-COLS_KEEP = ['Lane Barcode',
-             'Metaproject',
-             'Midpool Library',
-             'Library',
-             'Run Finished Date',
-             'Total MB',
-             'Prefix',
+COLS_KEEP = ['LANE_BARCODE',
+             'METAPROJECT',
+             'MIDPOOL_LIBRARY',
+             'LIBRARY',
+             'RUN_FINISHED_DATE',
+             'TOTAL_MB',
              'Group']
 
-BASE_COLUMNS = ['Lane Barcode',
-                'Run Name',
-                'Metaproject',
-                'Midpool Library',
-                'Library',
-                'Run Finished Date',
-                'Collaborator Sample ID',
-                'Internal Processing Sample ID',
-                'Machine Name',
-                'Total MB',
-                'Ref Genome Path',
-                'Result Path']
+BASE_COLUMNS = ['LANE_BARCODE',
+                'RUN_NAME',
+                'METAPROJECT',
+                'MIDPOOL_LIBRARY',
+                'LIBRARY',
+                'RUN_FINISHED_DATE',
+                'SAMPLE_EXTERNAL_ID',
+                'INTERNAL_PROCESSING_SAMPLE_ID',
+                'MACHINE_NAME',
+                'TOTAL_MB',
+                'REFERENCEGENOME_PATH',
+                'RESULT_PATH']
 
 STAT_COLUMNS = ['Unique Aligned MB',
                 '% Align Read 1',
@@ -37,16 +36,15 @@ STAT_COLUMNS = ['Unique Aligned MB',
                 'Q20 Bases',
                 'VerifyBamid Contamination Rate']
 
-RUN_DATE_COLUMNS = ['Run Start Date',
-                    'Analysis Start Date',
-                    'Analysis Alignment Stats Finished Date',
-                    'Analysis Finished Date']
+RUN_DATE_COLUMNS = ['RUN_START_DATE',
+                    'ANALYSIS_START_DATE',
+                    'ANALYSIS_ALIGNMENT_STATS_FINISHED_DATE',
+                    'ANALYSIS_FINISHED_DATE']
 
-ADD1_COLUMNS = ['Prefix',
-                'Group']
+ADD1_COLUMNS = ['Group']
 
 ADD2_COLUMNS = ['Application',
-                'Numeric Total MB']
+                'TOTAL_MB']
 
 CURRENT_COLUMNS_KEEP = BASE_COLUMNS + ADD1_COLUMNS + ADD2_COLUMNS
 
