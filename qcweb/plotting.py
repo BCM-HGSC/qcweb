@@ -6,6 +6,7 @@ import io
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+import pandas as pd
 import seaborn as sns; sns.set_style('whitegrid')
 
 from matplotlib import cm # color
@@ -149,6 +150,7 @@ def grp_pie_plot(data_frame):
     img = io.BytesIO()
 
     # the slices will be ordered and plotted counter-clockwise
+    data_frame['TOTAL_MB'] = pd.to_numeric(data_frame['TOTAL_MB'])
     grp = data_frame.groupby('Group')
     grp2 = (data_frame.groupby('Group')['TOTAL_MB'].sum()).reset_index()
     grp2['Total TB'] = (grp2['TOTAL_MB'] / 1_000_000)
@@ -184,6 +186,7 @@ def appl_pie_plot(data_frame):
     img = io.BytesIO()
 
     # the slices will be ordered and plotted counter-clockwise:
+    data_frame['TOTAL_MB'] = pd.to_numeric(data_frame['TOTAL_MB'])
     appl = data_frame.groupby('Application')
     appl2 = (data_frame.groupby('Application')['TOTAL_MB'].sum()).reset_index()
     appl2['Total TB'] = (appl2['TOTAL_MB'] / 1_000_000)
