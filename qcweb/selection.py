@@ -65,7 +65,7 @@ def home_appl():
 def by_date_range(result_df, start, end):
     df = result_df
     # convert to datetime64[ns]
-    df['Run Finished Date'] = df['Run Finished Date'].astype('datetime64[ns]')
+    df['RUN_FINISHED_DATE'] = df['RUN_FINISHED_DATE'].astype('datetime64[ns]')
     return df[(df[RUN_FINISHED_DATE] >= start)
               & (df[RUN_FINISHED_DATE] <= end)]
 

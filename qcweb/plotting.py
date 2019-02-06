@@ -150,8 +150,8 @@ def grp_pie_plot(data_frame):
 
     # the slices will be ordered and plotted counter-clockwise
     grp = data_frame.groupby('Group')
-    grp2 = (data_frame.groupby('Group')['Numeric Total MB'].sum()).reset_index()
-    grp2['Total TB'] = (grp2['Numeric Total MB'] / 1_000_000)
+    grp2 = (data_frame.groupby('Group')['TOTAL_MB'].sum()).reset_index()
+    grp2['Total TB'] = (grp2['TOTAL_MB'] / 1_000_000)
     grp3 = grp2
     # grp3 = grp2[grp2['Total TB'] > 100] # filter out negligence
 
@@ -185,8 +185,8 @@ def appl_pie_plot(data_frame):
 
     # the slices will be ordered and plotted counter-clockwise:
     appl = data_frame.groupby('Application')
-    appl2 = (data_frame.groupby('Application')['Numeric Total MB'].sum()).reset_index()
-    appl2['Total TB'] = (appl2['Numeric Total MB'] / 1_000_000)
+    appl2 = (data_frame.groupby('Application')['TOTAL_MB'].sum()).reset_index()
+    appl2['Total TB'] = (appl2['TOTAL_MB'] / 1_000_000)
     appl3 = appl2
     # appl3 = appl2[appl2['Total TB'] > 10] # filter out negligence
 
